@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.army.saluteindia.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_googleMapFragment"
+            app:destination="@id/googleMapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/googleMapFragment"
+        android:name="com.army.saluteindia.map.LatLongFragment"
+        android:label="GoogleMapFragment" >
+        <action
+            android:id="@+id/action_googleMapFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.army.saluteindia.map.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" >
+        <argument
+            android:name="latitude"
+            app:argType="float" />
+        <argument android:name="longitude"
+            app:argType="float" />
+    </fragment>
+</navigation>
