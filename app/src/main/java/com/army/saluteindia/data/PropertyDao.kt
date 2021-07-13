@@ -41,6 +41,12 @@ interface PropertyDao {
     @Query("SELECT DISTINCT(Mohalla) FROM property ")
     fun getAllMohallas(): LiveData<List<String>>
 
+    @Query("SELECT `LAT/LONG` FROM property WHERE Mohalla = :mohalla ")
+    fun getlatlongs(mohalla:String): LiveData<List<String>>
+
+    @Query("SELECT `LAT/LONG` FROM property")
+    fun getAlllatlongs(): LiveData<List<String>>
+
 
 
 }

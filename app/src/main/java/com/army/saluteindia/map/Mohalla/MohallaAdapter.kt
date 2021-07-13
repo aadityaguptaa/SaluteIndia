@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.army.saluteindia.R
 
@@ -38,9 +39,9 @@ class MohallaAdapter: RecyclerView.Adapter<MohallaAdapter.MyViewHolder>() {
 */
 
 
-        /*holder.constraintLayout.setOnClickListener {
-            Navigation.findNavController(holder.constraintLayout).navigate(CoyFragmentDirections.actionCoyFragmentToVillageFragment(coyList[position].toString()))
-        }*/
+        holder.constraintLayout.setOnClickListener {
+            Navigation.findNavController(holder.constraintLayout).navigate(MohallaFragmentDirections.actionMohallaFragmentToMapsFragment(mohallaList[position].toString()))
+        }
     }
 
     override fun getItemCount(): Int {

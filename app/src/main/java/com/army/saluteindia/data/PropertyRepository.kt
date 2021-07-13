@@ -14,6 +14,8 @@ class PropertyRepository(private val propertyDao: PropertyDao) {
     val coyList: LiveData<List<String>> = propertyDao.getCoyList()
     val villages: LiveData<List<String>> = propertyDao.getAllVillages()
     val mohallas: LiveData<List<String>> = propertyDao.getAllMohallas()
+    val latlongs: LiveData<List<String>> = propertyDao.getAlllatlongs()
+
 
 /*
     val villageCount= MutableLiveData<MutableList<Int>>()
@@ -54,6 +56,10 @@ class PropertyRepository(private val propertyDao: PropertyDao) {
 
     suspend fun getMohallas(village: String): LiveData<List<String>> {
         return propertyDao.getMohallas(village)
+    }
+
+    suspend fun getlatlongs(mohalla: String): LiveData<List<String>> {
+        return propertyDao.getlatlongs(mohalla)
     }
 
 

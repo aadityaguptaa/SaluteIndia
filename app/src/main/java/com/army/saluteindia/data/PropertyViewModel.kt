@@ -13,6 +13,8 @@ class PropertyViewModel(application: Application) : AndroidViewModel(application
     lateinit var villageCountList: MutableLiveData<MutableList<Int>>
 */  lateinit var villages: LiveData<List<String>>
     lateinit var mohallas: LiveData<List<String>>
+    lateinit var latlongs: LiveData<List<String>>
+
     var villagesDone: MutableLiveData<Int> = MutableLiveData(0)
 
 
@@ -25,6 +27,7 @@ class PropertyViewModel(application: Application) : AndroidViewModel(application
         coyList = repository.coyList
         villages = repository.villages
         mohallas = repository.mohallas
+        latlongs = repository.latlongs
 
 /*
         villageCountList = repository.villageCount
@@ -66,6 +69,12 @@ class PropertyViewModel(application: Application) : AndroidViewModel(application
     fun getMohallas(village: String){
         viewModelScope.launch(Dispatchers.IO) {
             mohallas = repository.getMohallas(village)
+        }
+    }
+
+    fun getlatlongs(mohalla: String){
+        viewModelScope.launch(Dispatchers.IO) {
+            latlongs = repository.getlatlongs(mohalla)
         }
     }
 

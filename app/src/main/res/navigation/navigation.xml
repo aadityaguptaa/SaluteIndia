@@ -41,5 +41,17 @@
         <argument
             android:name="villageName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_mohallaFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.army.saluteindia.map.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" >
+        <argument
+            android:name="mohallaName"
+            app:argType="string" />
     </fragment>
 </navigation>
