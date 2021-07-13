@@ -18,7 +18,9 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsFragment : Fragment() {
 
+/*
     private val args: MapsFragmentArgs by navArgs()
+*/
 
 
 
@@ -35,19 +37,19 @@ class MapsFragment : Fragment() {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
+/*
         val sydney = LatLng(args.latitude.toDouble(), args.longitude.toDouble())
-        var mumbai = LatLng(19.0760, 72.8777)
-        val delhi = LatLng(28.6139, 77.2090)
-        var markerMumbai = MarkerOptions().position(mumbai).title("Marker in Sydney")
+*/
+
+        /*var markerMumbai = MarkerOptions().position(sydney).title("Marker in Sydney")
         googleMap.addMarker(markerMumbai)
-        googleMap.addMarker(MarkerOptions().position(delhi).title("Marker in delhi"))
         googleMap.setOnMarkerClickListener(OnMarkerClickListener { marker ->
             Log.i("infofo", marker.title)
             //Using position get Value from arraylist
             false
         })
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))*/
     }
 
     override fun onCreateView(

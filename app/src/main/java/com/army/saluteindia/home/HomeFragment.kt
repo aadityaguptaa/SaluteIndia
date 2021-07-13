@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
         )
 
         binding.googleMap.setOnClickListener {view: View ->
-            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_googleMapFragment)
+            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_coyFragment)
         }
 
         return binding.root

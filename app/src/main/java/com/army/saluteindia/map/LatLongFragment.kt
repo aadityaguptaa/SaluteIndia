@@ -28,7 +28,6 @@ class LatLongFragment : Fragment() {
             val latitude = binding.latitudeEditText.text.toString().toFloat()
             val longitude = binding.longitudeEditText.text.toString().toFloat()
 
-            Navigation.findNavController(view).navigate(LatLongFragmentDirections.actionGoogleMapFragmentToMapsFragment(latitude = latitude, longitude = longitude))
         }
 
         return binding.root

@@ -11,26 +11,35 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_googleMapFragment"
-            app:destination="@id/googleMapFragment" />
+            android:id="@+id/action_homeFragment_to_coyFragment"
+            app:destination="@id/coyFragment" />
     </fragment>
     <fragment
-        android:id="@+id/googleMapFragment"
-        android:name="com.army.saluteindia.map.LatLongFragment"
-        android:label="GoogleMapFragment" >
+        android:id="@+id/coyFragment"
+        android:name="com.army.saluteindia.map.COY.CoyFragment"
+        android:label="CoyFragment" >
         <action
-            android:id="@+id/action_googleMapFragment_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
+            android:id="@+id/action_coyFragment_to_villageFragment"
+            app:destination="@id/villageFragment" />
     </fragment>
     <fragment
-        android:id="@+id/mapsFragment"
-        android:name="com.army.saluteindia.map.MapsFragment"
-        android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" >
+        android:id="@+id/villageFragment"
+        android:name="com.army.saluteindia.map.Village.VillageFragment"
+        android:label="fragment_village"
+        tools:layout="@layout/fragment_village" >
         <argument
-            android:name="latitude"
-            app:argType="float" />
-        <argument android:name="longitude"
-            app:argType="float" />
+            android:name="CoyName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_villageFragment_to_mohallaFragment"
+            app:destination="@id/mohallaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mohallaFragment"
+        android:name="com.army.saluteindia.map.Mohalla.MohallaFragment"
+        android:label="MohallaFragment" >
+        <argument
+            android:name="villageName"
+            app:argType="string" />
     </fragment>
 </navigation>
