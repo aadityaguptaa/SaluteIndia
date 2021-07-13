@@ -11,8 +11,8 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_googleMapFragment"
-            app:destination="@id/googleMapFragment" />
+            android:id="@+id/action_homeFragment_to_comapnyFragment"
+            app:destination="@id/comapnyFragment" />
     </fragment>
     <fragment
         android:id="@+id/googleMapFragment"
@@ -32,5 +32,32 @@
             app:argType="float" />
         <argument android:name="longitude"
             app:argType="float" />
+    </fragment>
+    <fragment
+        android:id="@+id/comapnyFragment"
+        android:name="com.army.saluteindia.fragment.ComapnyFragment"
+        android:label="comapny_fragment"
+        tools:layout="@layout/comapny_fragment" >
+        <action
+            android:id="@+id/action_comapnyFragment_to_village_fragment"
+            app:destination="@id/village_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/maholla_fragment"
+        android:name="com.army.saluteindia.fragment.maholla_fragment"
+        android:label="fragment_maholla_fragment"
+        tools:layout="@layout/fragment_maholla_fragment" >
+        <action
+            android:id="@+id/action_maholla_fragment_to_googleMapFragment"
+            app:destination="@id/googleMapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/village_fragment"
+        android:name="com.army.saluteindia.fragment.Village_fragment"
+        android:label="fragment_village_fragment"
+        tools:layout="@layout/fragment_village_fragment" >
+        <action
+            android:id="@+id/action_village_fragment_to_maholla_fragment"
+            app:destination="@id/maholla_fragment" />
     </fragment>
 </navigation>
