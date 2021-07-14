@@ -43,13 +43,17 @@ class PropertyRepository(private val propertyDao: PropertyDao) {
         propertyDao.deleteAll()
     }
 
-    /*suspend fun countVillagesInCoy(): MutableList<Int>? {
+    suspend fun countVillages(coy: String): Int{
+        return propertyDao.getVillageCount(coy)
+    }
+
+    suspend fun countVillagesInCoy(): MutableList<Int>? {
         var list: MutableList<Int> = mutableListOf()
         for(i in 0..coyList.value!!.size){
             list.add(propertyDao.getVillageCount(coyList.value!!.get(i)))
         }
         return list
-    }*/
+    }
     suspend fun getVillages(coy: String): LiveData<List<String>> {
         return propertyDao.getVillages(coy)
     }

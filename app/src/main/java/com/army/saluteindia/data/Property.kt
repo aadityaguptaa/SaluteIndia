@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 import org.jetbrains.annotations.NotNull
 
+@Parcelize
 @Entity(tableName = "property")
 data class Property (
 
@@ -39,4 +40,4 @@ data class Property (
     var entrypoint: Int,
     @ColumnInfo(name = "LAT/LONG")
     var latlong: String
-)
+): Parcelable

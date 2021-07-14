@@ -1,6 +1,7 @@
 package com.army.saluteindia.data
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,20 +20,32 @@ class PropertyViewModel(application: Application) : AndroidViewModel(application
 
 
     private lateinit var repository: PropertyRepository
+    lateinit var propertyDao: PropertyDao
 
     init{
-        var propertyDao: PropertyDao = PropertyDatabase.getDatabase(application).propertyDao()
+        propertyDao = PropertyDatabase.getDatabase(application).propertyDao()
         repository = PropertyRepository(propertyDao)
         propertyList = repository.propertyList
         coyList = repository.coyList
         villages = repository.villages
         mohallas = repository.mohallas
         latlongs = repository.latlongs
+        //count = LiveData(mutableListOf<Int>(0))
 
 /*
         villageCountList = repository.villageCount
 */
 
+    }
+    fun getVillageCount(coy: String){
+
+        viewModelScope.launch(Dispatchers.IO){
+            var c = repository.countVillages(coy)
+
+            //count.add(c)
+            /*Log.i("asdf", c.toString())
+            Log.i("asdf", count.toString())*/
+        }
     }
 
     fun addProperty(property: Property){

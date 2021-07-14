@@ -1,6 +1,7 @@
 package com.army.saluteindia.map.COY
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,12 +34,26 @@ class CoyFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(PropertyViewModel::class.java)
 
+
         var coyAdapter = CoyAdapter()
         binding.coyFragmentRecyclerView.adapter = coyAdapter
         binding.coyFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.coyList.observe(viewLifecycleOwner, Observer { list ->
             coyAdapter.setData(list)
+            list.forEach {
+                viewModel.getVillageCount(it)
+            }
+            //Log.i("asdf", viewModel.count.toString())
+
+
+
+        })
+        Thread.sleep(100)
+
+
+        viewModel.propertyList.observe(viewLifecycleOwner, Observer { list ->
+            coyAdapter.setProperty(list)
         })
 
        /* viewModel.villageCountList.observe(viewLifecycleOwner, Observer { list ->

@@ -8,10 +8,12 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.army.saluteindia.R
+import com.army.saluteindia.data.Property
 
 class CoyAdapter: RecyclerView.Adapter<CoyAdapter.MyViewHolder>() {
 
     var coyList = emptyList<String>()
+    var propertyList = emptyList<Property>()
 /*
     var countList = emptyList<Int>()
 */
@@ -19,9 +21,13 @@ class CoyAdapter: RecyclerView.Adapter<CoyAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val coyName: TextView = itemView.findViewById(R.id.companyName)
+
 /*
         val noOfVillages: TextView = itemView.findViewById(R.id.noOfVillagesCOY)
+
+
 */
+
 
         val constraintLayout: ConstraintLayout = itemView.findViewById(R.id.coyConstraintLayout)
     }
@@ -34,6 +40,7 @@ class CoyAdapter: RecyclerView.Adapter<CoyAdapter.MyViewHolder>() {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.coyName.text = coyList[position].toString()
+
 /*
         holder.noOfVillages.text = countList[position].toString()
 */
@@ -55,6 +62,10 @@ class CoyAdapter: RecyclerView.Adapter<CoyAdapter.MyViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun setProperty(property: List<Property>){
+        this.propertyList = property
+        notifyDataSetChanged()
+    }
     /*fun setVillageCount(count: List<Int>){
         this.countList = count
         notifyDataSetChanged()
