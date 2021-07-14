@@ -1,16 +1,15 @@
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="10dp"
-    app:cardCornerRadius="20dp"
-    android:layout_margin="10dp"
-    android:outlineSpotShadowColor="@color/purple_200"
-    app:cardElevation="30dp"
-    app:cardMaxElevation="35dp"
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mohallaCardView"
+    android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:id="@+id/mohallaCardView">
+    android:layout_margin="8dp"
+    android:elevation="8dp"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/material_on_surface_stroke"
+    app:strokeWidth="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mohallaConstraintLayout"
@@ -19,7 +18,7 @@
 
         <TextView
             android:id="@+id/mohallaName"
-            style="@style/TextAppearance.AppCompat.Title"
+            style="@style/TextAppearance.MdcTypographyStyles.Headline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
@@ -32,4 +31,4 @@
 
         />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
