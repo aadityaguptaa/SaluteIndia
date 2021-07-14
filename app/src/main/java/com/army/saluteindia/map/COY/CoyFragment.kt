@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -27,6 +29,9 @@ class CoyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
+
+
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_coy, container, false
         )
@@ -41,10 +46,15 @@ class CoyFragment : Fragment() {
             coyAdapter.setData(list)
         })
 
-       /* viewModel.villageCountList.observe(viewLifecycleOwner, Observer { list ->
+
+        val lac=LayoutAnimationController(AnimationUtils.loadAnimation(activity,R.anim.slide_in))  //
+        lac.delay=0.2f                                                                                                                      //
+        lac.order=LayoutAnimationController.ORDER_NORMAL//
+        /* viewModel.villageCountList.observe(viewLifecycleOwner, Observer { list ->
             coyAdapter.setVillageCount(list)
         })*/
 
+        binding.coyFragmentRecyclerView.layoutAnimation=lac
 
         return binding.root
     }
