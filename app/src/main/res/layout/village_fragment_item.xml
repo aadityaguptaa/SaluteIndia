@@ -6,7 +6,7 @@
     android:layout_height="100dp"
     android:layout_margin="8dp"
     android:elevation="8dp"
-    app:cardCornerRadius="2dp"
+    app:cardCornerRadius="5dp"
     app:cardElevation="0dp"
     app:strokeColor="@color/material_on_surface_stroke"
     app:strokeWidth="1dp">
@@ -27,8 +27,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-
-         />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

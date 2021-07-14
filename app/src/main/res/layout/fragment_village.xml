@@ -7,21 +7,38 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:id="@+id/villageFragmentConstraintLayout"
         android:layout_width="match_parent"
+        android:background="@drawable/background"
         android:layout_height="match_parent"
         tools:context=".map.Village.VillageFragment">
 
+        <TextView
+            android:id="@+id/village_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="159dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="VILLAGES"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@id/village_title"
             android:id="@+id/villageFragmentRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/village_fragment_item"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 </layout>
