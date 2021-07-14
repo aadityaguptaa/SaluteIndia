@@ -10,8 +10,8 @@
     <RelativeLayout
         android:id="@+id/villageFragmentConstraintLayout"
         android:layout_width="match_parent"
-        android:background="@drawable/background"
         android:layout_height="match_parent"
+        android:background="@drawable/background"
         tools:context=".map.Village.VillageFragment">
 
         <TextView
