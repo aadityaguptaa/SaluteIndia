@@ -15,7 +15,7 @@ class CoyAdapter: RecyclerView.Adapter<CoyAdapter.MyViewHolder>() {
 /*
     var countList = emptyList<Int>()
 */
-
+     var p:Int=-1
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val coyName: TextView = itemView.findViewById(R.id.companyName)
