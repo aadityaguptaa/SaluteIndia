@@ -37,7 +37,9 @@ class VillageFragment : Fragment() {
         var coy = args.CoyName
 
         viewModel = ViewModelProvider(this).get(PropertyViewModel::class.java)
-        viewModel.getVillages(coy)
+        if(coy != "home") {
+            viewModel.getVillages(coy)
+        }
 
         var villageAdapter = VillageAdapter()
         binding.villageFragmentRecyclerView.adapter = villageAdapter

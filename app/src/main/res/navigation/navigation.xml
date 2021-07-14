@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_homeFragment_to_coyFragment"
             app:destination="@id/coyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_villageFragment"
+            app:destination="@id/villageFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mohallaFragment"
+            app:destination="@id/mohallaFragment" />
     </fragment>
     <fragment
         android:id="@+id/coyFragment"

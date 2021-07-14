@@ -24,9 +24,18 @@ class HomeFragment : Fragment() {
             layoutInflater, R.layout.fragment_home, container, false
         )
 
-        binding.googleMap.setOnClickListener {view: View ->
+        binding.coy.setOnClickListener {view: View ->
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_coyFragment)
         }
+
+        binding.village.setOnClickListener {view: View ->
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToVillageFragment("home"))
+        }
+
+        binding.mohalla.setOnClickListener {view: View ->
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMohallaFragment("home"))
+        }
+
 
         return binding.root
     }

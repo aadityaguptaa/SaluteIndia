@@ -37,7 +37,9 @@ class MohallaFragment : Fragment() {
         var village = args.villageName
 
         viewModel = ViewModelProvider(this).get(PropertyViewModel::class.java)
-        viewModel.getMohallas(village)
+        if(village != "home") {
+            viewModel.getMohallas(village)
+        }
 
         var mohallaAdapter = MohallaAdapter()
         binding.mohallaFragmentRecyclerView.adapter = mohallaAdapter
