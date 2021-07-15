@@ -29,11 +29,11 @@ class HomeFragment : Fragment() {
         }
 
         binding.village.setOnClickListener {view: View ->
-            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToVillageFragment("home"))
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToVillageFragment(-1))
         }
 
         binding.mohalla.setOnClickListener {view: View ->
-            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMohallaFragment("home"))
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMohallaFragment(-1))
         }
 
 

@@ -34,8 +34,8 @@
         android:label="fragment_village"
         tools:layout="@layout/fragment_village" >
         <argument
-            android:name="CoyName"
-            app:argType="string" />
+            android:name="coyName"
+            app:argType="integer" />
         <action
             android:id="@+id/action_villageFragment_to_mohallaFragment"
             app:destination="@id/mohallaFragment" />
@@ -45,8 +45,8 @@
         android:name="com.army.saluteindia.map.Mohalla.MohallaFragment"
         android:label="MohallaFragment" >
         <argument
-            android:name="villageName"
-            app:argType="string" />
+            android:name="villageId"
+            app:argType="integer" />
         <action
             android:id="@+id/action_mohallaFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
@@ -57,7 +57,7 @@
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" >
         <argument
-            android:name="mohallaName"
-            app:argType="string" />
+            android:name="mohallaId"
+            app:argType="integer" />
     </fragment>
 </navigation>

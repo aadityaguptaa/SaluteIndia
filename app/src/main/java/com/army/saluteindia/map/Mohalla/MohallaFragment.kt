@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.army.saluteindia.R
 import com.army.saluteindia.data.PropertyViewModel
+import com.army.saluteindia.data2.viewModel
 import com.army.saluteindia.databinding.FragmentMohallaBinding
 import com.army.saluteindia.databinding.FragmentVillageBinding
 import com.army.saluteindia.map.Village.VillageAdapter
@@ -24,7 +25,7 @@ class MohallaFragment : Fragment() {
     private val args: MohallaFragmentArgs by navArgs()
 
     lateinit var binding : FragmentMohallaBinding
-    lateinit var viewModel: PropertyViewModel
+    lateinit var viewModel: viewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,10 +35,10 @@ class MohallaFragment : Fragment() {
             inflater, R.layout.fragment_mohalla, container, false
         )
 
-        var village = args.villageName
+        var village = args.villageId
 
-        viewModel = ViewModelProvider(this).get(PropertyViewModel::class.java)
-        if(village != "home") {
+        viewModel = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
+        if(village != -1) {
             viewModel.getMohallas(village)
         }
 
@@ -50,7 +51,6 @@ class MohallaFragment : Fragment() {
 
         viewModel.mohallas.observe(viewLifecycleOwner, Observer { t ->
             mohallaAdapter.setData(t)
-
         })
 
         return binding.root

@@ -13,54 +13,30 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.army.saluteindia.ListAdapter
 import com.army.saluteindia.R
 import com.army.saluteindia.data.PropertyViewModel
+import com.army.saluteindia.data2.viewModel
 import com.army.saluteindia.databinding.FragmentCoyBinding
 
 
 class CoyFragment : Fragment() {
 
     lateinit var binding : FragmentCoyBinding
-    lateinit var viewModel: PropertyViewModel
-
-
-
+    lateinit var viewModel: viewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_coy, container, false
         )
-
-        viewModel = ViewModelProvider(this).get(PropertyViewModel::class.java)
-
-
+        viewModel = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
         var coyAdapter = CoyAdapter()
         binding.coyFragmentRecyclerView.adapter = coyAdapter
         binding.coyFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.coyList.observe(viewLifecycleOwner, Observer { list ->
             coyAdapter.setData(list)
-            list.forEach {
-                viewModel.getVillageCount(it)
-            }
-            //Log.i("asdf", viewModel.count.toString())
-
-
 
         })
-        Thread.sleep(100)
-
-
-        viewModel.propertyList.observe(viewLifecycleOwner, Observer { list ->
-            coyAdapter.setProperty(list)
-        })
-
-       /* viewModel.villageCountList.observe(viewLifecycleOwner, Observer { list ->
-            coyAdapter.setVillageCount(list)
-        })*/
-
-
         return binding.root
     }
 

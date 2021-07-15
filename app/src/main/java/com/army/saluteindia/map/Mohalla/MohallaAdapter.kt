@@ -8,10 +8,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.army.saluteindia.R
+import com.army.saluteindia.data2.entities.MOHALLA
 
 class MohallaAdapter: RecyclerView.Adapter<MohallaAdapter.MyViewHolder>() {
 
-    var mohallaList = emptyList<String>()
+    var mohallaList = emptyList<MOHALLA>()
 /*
     var countList = emptyList<Int>()
 */
@@ -33,14 +34,14 @@ class MohallaAdapter: RecyclerView.Adapter<MohallaAdapter.MyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.mohallaName.text = mohallaList[position].toString()
+        holder.mohallaName.text = mohallaList[position].mohalla_name
 /*
         holder.noOfVillages.text = countList[position].toString()
 */
 
 
         holder.constraintLayout.setOnClickListener {
-            Navigation.findNavController(holder.constraintLayout).navigate(MohallaFragmentDirections.actionMohallaFragmentToMapsFragment(mohallaList[position].toString()))
+            Navigation.findNavController(holder.constraintLayout).navigate(MohallaFragmentDirections.actionMohallaFragmentToMapsFragment(mohallaList[position].id))
         }
     }
 
@@ -50,7 +51,7 @@ class MohallaAdapter: RecyclerView.Adapter<MohallaAdapter.MyViewHolder>() {
 
 
 
-    fun setData(mohalla: List<String>){
+    fun setData(mohalla: List<MOHALLA>){
         this.mohallaList = mohalla
         notifyDataSetChanged()
     }

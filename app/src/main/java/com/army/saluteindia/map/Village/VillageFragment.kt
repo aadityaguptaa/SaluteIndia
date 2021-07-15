@@ -8,21 +8,24 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.army.saluteindia.R
 import com.army.saluteindia.data.PropertyViewModel
+import com.army.saluteindia.data2.database
+import com.army.saluteindia.data2.viewModel
 import com.army.saluteindia.databinding.FragmentCoyBinding
 import com.army.saluteindia.databinding.FragmentVillageBinding
 import com.army.saluteindia.map.COY.CoyAdapter
+import kotlinx.coroutines.launch
 
 
 class VillageFragment : Fragment() {
 
     private val args: VillageFragmentArgs by navArgs()
-
     lateinit var binding : FragmentVillageBinding
-    lateinit var viewModel: PropertyViewModel
+    lateinit var viewModel: viewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,10 +37,12 @@ class VillageFragment : Fragment() {
             inflater, R.layout.fragment_village, container, false
         )
 
-        var coy = args.CoyName
+        var coy = args.coyName
 
-        viewModel = ViewModelProvider(this).get(PropertyViewModel::class.java)
-        if(coy != "home") {
+        val dao = database.getInstance(requireContext()).dao
+
+        viewModel = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
+        if(coy != -1) {
             viewModel.getVillages(coy)
         }
 
@@ -45,13 +50,12 @@ class VillageFragment : Fragment() {
         binding.villageFragmentRecyclerView.adapter = villageAdapter
         binding.villageFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        //REPAIR THIS THREAD !!!!!!!!!!!!!!!!!!!!!!!!!!
         Thread.sleep(100)
-
-        viewModel.villages.observe(viewLifecycleOwner, Observer { t ->
-                villageAdapter.setData(t)
-
+        viewModel.villages.observe(viewLifecycleOwner, Observer {
+            villageAdapter.setData(it)
         })
+
+
 
       return binding.root
     }

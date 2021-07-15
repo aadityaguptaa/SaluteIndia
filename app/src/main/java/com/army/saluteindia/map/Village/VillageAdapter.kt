@@ -8,21 +8,20 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.army.saluteindia.R
+import com.army.saluteindia.data2.entities.VILLAGE
+import com.army.saluteindia.data2.relations.CoyWithVillages
 import com.army.saluteindia.map.COY.CoyFragmentDirections
 
 class VillageAdapter: RecyclerView.Adapter<VillageAdapter.MyViewHolder>() {
 
-    var villageList = emptyList<String>()
-/*
-    var countList = emptyList<Int>()
-*/
+    var villageList = emptyList<VILLAGE>()
 
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val villageName: TextView = itemView.findViewById(R.id.villageName)
-/*
-        val noOfVillages: TextView = itemView.findViewById(R.id.noOfVillagesCOY)
-*/
+        val noOfMohallas: TextView = itemView.findViewById(R.id.noOfMohallasVillage)
+        val noOfFamily: TextView = itemView.findViewById(R.id.noOfFamilyVillage)
+        val noOfHouses: TextView = itemView.findViewById(R.id.noOfHousesVillage)
 
         val constraintLayout: ConstraintLayout = itemView.findViewById(R.id.villageConstraintLayout)
     }
@@ -34,14 +33,13 @@ class VillageAdapter: RecyclerView.Adapter<VillageAdapter.MyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.villageName.text = villageList[position].toString()
-/*
-        holder.noOfVillages.text = countList[position].toString()
-*/
-
+        holder.villageName.text = villageList[position].village_name
+        holder.noOfMohallas.text = villageList[position].mohalla_count.toString()
+        holder.noOfFamily.text = villageList[position].family_count.toString()
+        holder.noOfHouses.text = villageList[position].family_count.toString()
 
         holder.constraintLayout.setOnClickListener {
-            Navigation.findNavController(holder.constraintLayout).navigate(VillageFragmentDirections.actionVillageFragmentToMohallaFragment(villageList[position]))
+            Navigation.findNavController(holder.constraintLayout).navigate(VillageFragmentDirections.actionVillageFragmentToMohallaFragment(villageList[position].id))
         }
     }
 
@@ -51,7 +49,7 @@ class VillageAdapter: RecyclerView.Adapter<VillageAdapter.MyViewHolder>() {
 
 
 
-    fun setData(village: List<String>){
+    fun setData(village: List<VILLAGE>){
         this.villageList = village
         notifyDataSetChanged()
     }

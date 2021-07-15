@@ -9,45 +9,36 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.army.saluteindia.R
 import com.army.saluteindia.data.Property
+import com.army.saluteindia.data2.entities.COY
 
 class CoyAdapter: RecyclerView.Adapter<CoyAdapter.MyViewHolder>() {
 
-    var coyList = emptyList<String>()
-    var propertyList = emptyList<Property>()
-/*
-    var countList = emptyList<Int>()
-*/
-
+    var coyList = emptyList<COY>()
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val coyName: TextView = itemView.findViewById(R.id.companyName)
-
-/*
-        val noOfVillages: TextView = itemView.findViewById(R.id.noOfVillagesCOY)
-
-
-*/
-
+        val noOfVillages: TextView = itemView.findViewById(R.id.noOfVillagesCoy)
+        val noOfMohallas: TextView = itemView.findViewById(R.id.noOfMohallasCoy)
+        val noOfHouses: TextView = itemView.findViewById(R.id.noOfHousesCoy)
+        val noOfFamily: TextView = itemView.findViewById(R.id.noOfFamilyCoy)
 
         val constraintLayout: ConstraintLayout = itemView.findViewById(R.id.coyConstraintLayout)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         var item = LayoutInflater.from(parent.context).inflate(R.layout.coy_fragment_item, parent, false)
-
         return MyViewHolder(item)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.coyName.text = coyList[position].toString()
-
-/*
-        holder.noOfVillages.text = countList[position].toString()
-*/
-
+        holder.coyName.text = coyList[position].coy_Name.toString()
+        holder.noOfVillages.text = coyList[position].village_count.toString()
+        holder.noOfMohallas.text = coyList[position].mohalla_count.toString()
+        holder.noOfHouses.text = coyList[position].family_count.toString()
+        holder.noOfFamily.text = coyList[position].family_count.toString()
 
         holder.constraintLayout.setOnClickListener {
-            Navigation.findNavController(holder.constraintLayout).navigate(CoyFragmentDirections.actionCoyFragmentToVillageFragment(coyList[position].toString()))
+            Navigation.findNavController(holder.constraintLayout).navigate(CoyFragmentDirections.actionCoyFragmentToVillageFragment(coyList[position].id))
         }
     }
 
@@ -57,17 +48,10 @@ class CoyAdapter: RecyclerView.Adapter<CoyAdapter.MyViewHolder>() {
 
 
 
-    fun setData(coy: List<String>){
+    fun setData(coy: List<COY>){
         this.coyList = coy
         notifyDataSetChanged()
     }
 
-    fun setProperty(property: List<Property>){
-        this.propertyList = property
-        notifyDataSetChanged()
-    }
-    /*fun setVillageCount(count: List<Int>){
-        this.countList = count
-        notifyDataSetChanged()
-    }*/
+
 }

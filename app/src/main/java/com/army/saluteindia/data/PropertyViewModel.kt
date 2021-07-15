@@ -10,14 +10,13 @@ class PropertyViewModel(application: Application) : AndroidViewModel(application
 
     lateinit var propertyList: LiveData<List<Property>>
     lateinit var coyList: LiveData<List<String>>
-/*
-    lateinit var villageCountList: MutableLiveData<MutableList<Int>>
-*/  lateinit var villages: LiveData<List<String>>
+    lateinit var count: MutableLiveData<MutableList<Int>>
+  lateinit var villages: LiveData<List<String>>
     lateinit var mohallas: LiveData<List<String>>
     lateinit var latlongs: LiveData<List<String>>
 
     var villagesDone: MutableLiveData<Int> = MutableLiveData(0)
-
+    var mlc = mutableListOf<Int>()
 
     private lateinit var repository: PropertyRepository
     lateinit var propertyDao: PropertyDao
@@ -30,7 +29,7 @@ class PropertyViewModel(application: Application) : AndroidViewModel(application
         villages = repository.villages
         mohallas = repository.mohallas
         latlongs = repository.latlongs
-        //count = LiveData(mutableListOf<Int>(0))
+        count = MutableLiveData(mutableListOf<Int>(0))
 
 /*
         villageCountList = repository.villageCount
@@ -41,10 +40,8 @@ class PropertyViewModel(application: Application) : AndroidViewModel(application
 
         viewModelScope.launch(Dispatchers.IO){
             var c = repository.countVillages(coy)
-
-            //count.add(c)
-            /*Log.i("asdf", c.toString())
-            Log.i("asdf", count.toString())*/
+            mlc.add(c)
+            count.postValue(mlc)
         }
     }
 

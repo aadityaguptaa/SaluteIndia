@@ -83,10 +83,10 @@ class MapsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        var mohalla = args.mohallaName
+        var mohalla = args.mohallaId
 
         viewModel = ViewModelProvider(this).get(PropertyViewModel::class.java)
-        viewModel.getlatlongs(mohalla)
+        /*viewModel.getlatlongs(mohalla)*/
 
 
         return inflater.inflate(R.layout.fragment_maps, container, false)
