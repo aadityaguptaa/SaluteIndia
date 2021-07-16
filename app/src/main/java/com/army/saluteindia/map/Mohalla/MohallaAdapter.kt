@@ -20,6 +20,9 @@ class MohallaAdapter: RecyclerView.Adapter<MohallaAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val mohallaName: TextView = itemView.findViewById(R.id.mohallaName)
+        val familyCount: TextView = itemView.findViewById(R.id.noOfFamilyMohalla)
+        val houseCount: TextView = itemView.findViewById(R.id.noOfHouseMohalla)
+
 /*
         val noOfVillages: TextView = itemView.findViewById(R.id.noOfVillagesCOY)
 */
@@ -35,10 +38,8 @@ class MohallaAdapter: RecyclerView.Adapter<MohallaAdapter.MyViewHolder>() {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.mohallaName.text = mohallaList[position].mohalla_name
-/*
-        holder.noOfVillages.text = countList[position].toString()
-*/
-
+        holder.familyCount.text = mohallaList[position].family_count.toString()
+        holder.houseCount.text = mohallaList[position].family_count.toString()
 
         holder.constraintLayout.setOnClickListener {
             Navigation.findNavController(holder.constraintLayout).navigate(MohallaFragmentDirections.actionMohallaFragmentToMapsFragment(mohallaList[position].id))

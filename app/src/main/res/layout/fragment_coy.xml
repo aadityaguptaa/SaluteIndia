@@ -2,38 +2,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/coyFragmentConstraintLayout"
         android:layout_width="match_parent"
-        android:background="@drawable/background"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/background">
 
         <TextView
             android:id="@+id/coy_title"
+            style="@style/TextAppearance.MdcTypographyStyles.Headline4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="159dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="16dp"
             android:gravity="center"
             android:text="COY"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_below="@id/coy_title"
             android:id="@+id/coyFragmentRecyclerView"
             android:layout_width="match_parent"
-            tools:listitem="@layout/coy_fragment_item"
-            android:layout_height="match_parent"
-            android:layoutAnimation="@anim/layout_animation_coy"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/coy_title"
+            tools:listitem="@layout/coy_fragment_item" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

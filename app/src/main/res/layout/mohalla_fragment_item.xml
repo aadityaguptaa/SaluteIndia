@@ -6,7 +6,7 @@
     android:layout_height="100dp"
     android:layout_margin="8dp"
     android:elevation="8dp"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="0dp"
     app:strokeColor="@color/material_on_surface_stroke"
     app:strokeWidth="1dp">
@@ -27,6 +27,72 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <LinearLayout
+            style="@style/countStyle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mohallaName"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/TextAppearance.MdcTypographyStyles.Subtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:padding="4dp"
+                android:text="Family:" />
+
+            <TextView
+                android:id="@+id/noOfFamilyMohalla"
+                style="@style/TextAppearance.MdcTypographyStyles.Subtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:layout_marginRight="4dp"
+
+                android:padding="4dp"
+                android:paddingRight="8dp"
+                android:text="0" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:background="#545459" />
+
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/TextAppearance.MdcTypographyStyles.Subtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:layout_marginLeft="4dp"
+
+                android:padding="4dp"
+                android:text="Houses:" />
+
+            <TextView
+                android:id="@+id/noOfHouseMohalla"
+                style="@style/TextAppearance.MdcTypographyStyles.Subtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="4dp"
+
+                android:padding="4dp"
+                android:text="0" />
+
+
+        </LinearLayout>
 
 
         />

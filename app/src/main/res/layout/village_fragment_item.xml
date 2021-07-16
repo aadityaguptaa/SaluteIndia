@@ -6,7 +6,7 @@
     android:layout_height="100dp"
     android:layout_margin="8dp"
     android:elevation="8dp"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="0dp"
     app:strokeColor="@color/material_on_surface_stroke"
     app:strokeWidth="1dp">
@@ -18,9 +18,9 @@
 
         <TextView
             android:id="@+id/villageName"
+            style="@style/TextAppearance.MdcTypographyStyles.Headline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.MdcTypographyStyles.Headline5"
             android:fontFamily="@font/roboto"
             android:padding="8dp"
             android:text="AhemedNagar"
@@ -28,14 +28,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:layout_width="375dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            style="@style/countStyle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:orientation="horizontal"
-            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,44 +40,85 @@
 
             <TextView
                 android:id="@+id/textView2"
+                style="@style/TextAppearance.MdcTypographyStyles.Subtitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Mohallas" />
+                android:layout_gravity="center_vertical"
+
+                android:padding="4dp"
+                android:text="Mohallas:" />
 
             <TextView
                 android:id="@+id/noOfMohallasVillage"
+                style="@style/TextAppearance.MdcTypographyStyles.Subtitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+
+                android:layout_marginRight="4dp"
+
+                android:padding="4dp"
+                android:paddingRight="8dp"
                 android:text="0" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:background="#545459" />
 
             <TextView
                 android:id="@+id/textView6"
+                style="@style/TextAppearance.MdcTypographyStyles.Subtitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Family" />
+                android:layout_gravity="center_vertical"
+
+                android:layout_marginLeft="4dp"
+
+                android:padding="4dp"
+                android:text="Family:" />
 
             <TextView
                 android:id="@+id/noOfFamilyVillage"
+                style="@style/TextAppearance.MdcTypographyStyles.Subtitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="4dp"
+
+                android:padding="4dp"
                 android:text="0" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="4dp"
+                android:background="#545459" />
 
             <TextView
                 android:id="@+id/textView9"
+                style="@style/TextAppearance.MdcTypographyStyles.Subtitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Houses" />
+                android:layout_gravity="center_vertical"
+
+                android:layout_marginLeft="4dp"
+
+                android:padding="4dp"
+                android:text="Houses:" />
 
             <TextView
                 android:id="@+id/noOfHousesVillage"
+                style="@style/TextAppearance.MdcTypographyStyles.Subtitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+
+                android:layout_gravity="center_vertical"
+                android:padding="4dp"
+
                 android:text="0" />
         </LinearLayout>
 
