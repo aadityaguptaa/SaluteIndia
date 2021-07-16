@@ -78,8 +78,8 @@ class MainActivity : AppCompatActivity() {
                 "N",
                 "Y",
                 2,
-                "28.679079",
-                "77.069710",
+                "30.679079",
+                "79.069710",
                 1,
                 3,
                 4,
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 1,
                 1,
                 2,
-                4
+                1
             )
 
         )

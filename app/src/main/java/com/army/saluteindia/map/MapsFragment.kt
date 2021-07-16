@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.army.saluteindia.R
 import com.army.saluteindia.data.PropertyViewModel
-import com.army.saluteindia.databinding.FragmentMohallaBinding
+import com.army.saluteindia.data2.viewModel
 import com.army.saluteindia.map.Mohalla.MohallaFragmentArgs
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
@@ -28,7 +30,7 @@ class MapsFragment : Fragment() {
 */
     private val args: MapsFragmentArgs by navArgs()
 
-    lateinit var viewModel: PropertyViewModel
+    lateinit var viewModel: viewModel
 
 
     var latitude = 0.0
@@ -50,28 +52,21 @@ class MapsFragment : Fragment() {
 */
 
 
-        var latlongList = viewModel.latlongs.value!!
-        Log.i("infofo", latlongList.toString())
-        var listsize = (latlongList.size) - 1
+        var houseList = viewModel.houses.value!!
+        var listsize = (houseList.size) - 1
 
         var latSum = 0.0
         var longsum = 0.0
         for(i in 0..listsize){
-            var latlong = latlongList[i].split('/')
-            latSum += latlong[0].toDouble()
-            longsum += latlong[1].toDouble()
-
-            val sydney = LatLng(latlong[0].toDouble(), latlong[1].toDouble())
-            googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+            var latlong = houseList[i]
+            latSum += latlong.lat.toDouble()
+            longsum += latlong.lon.toDouble()
+            val sydney = LatLng(latlong.lat.toDouble(), latlong.lon.toDouble())
+            googleMap.addMarker(MarkerOptions().position(sydney).title(latlong.house))
+            googleMap.setOnInfoWindowClickListener { findNavController().navigate(MapsFragmentDirections.actionMapsFragmentToDetailsFragment()) }
         }
 
-        /*var markerMumbai = MarkerOptions().position(sydney).title("Marker in Sydney")
-        googleMap.addMarker(markerMumbai)
-        googleMap.setOnMarkerClickListener(OnMarkerClickListener { marker ->
-            Log.i("infofo", marker.title)
-            //Using position get Value from arraylist
-            false
-        })*/
+
         var ll = LatLng(latSum/(listsize+1), longsum/(listsize+1))
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ll, 5F))
 
@@ -85,8 +80,8 @@ class MapsFragment : Fragment() {
 
         var mohalla = args.mohallaId
 
-        viewModel = ViewModelProvider(this).get(PropertyViewModel::class.java)
-        /*viewModel.getlatlongs(mohalla)*/
+        viewModel = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
+        viewModel.getHouses(mohalla)
 
 
         return inflater.inflate(R.layout.fragment_maps, container, false)
@@ -98,7 +93,7 @@ class MapsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         Thread.sleep(100)
-        viewModel.latlongs.observe(viewLifecycleOwner, Observer { list ->
+        viewModel.houses.observe(viewLifecycleOwner, Observer { list ->
             mapFragment?.getMapAsync(callback)
         })
     }

@@ -59,5 +59,13 @@
         <argument
             android:name="mohallaId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_mapsFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.army.saluteindia.map.Details.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
 </navigation>

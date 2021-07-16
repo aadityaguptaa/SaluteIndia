@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.army.saluteindia.data2.entities.COY
+import com.army.saluteindia.data2.entities.HOUSES
 import com.army.saluteindia.data2.entities.MOHALLA
 import com.army.saluteindia.data2.entities.VILLAGE
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +19,7 @@ class viewModel(application: Application): AndroidViewModel(application) {
     lateinit var coyList: LiveData<List<COY>>
     lateinit var villages: LiveData<List<VILLAGE>>
     lateinit var mohallas: LiveData<List<MOHALLA>>
+    lateinit var houses: LiveData<List<HOUSES>>
 
 
 
@@ -26,6 +28,8 @@ class viewModel(application: Application): AndroidViewModel(application) {
         coyList = repository.coyList
         villages = repository.villages
         mohallas = repository.mohallas
+        houses = repository.houses
+
     }
 
     fun getVillages(coy: Int){
@@ -37,6 +41,12 @@ class viewModel(application: Application): AndroidViewModel(application) {
     fun getMohallas(village: Int){
         viewModelScope.launch(Dispatchers.IO) {
             mohallas = repository.getMohallas(village)
+        }
+    }
+
+    fun getHouses(mohalla: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            houses = repository.getHouses(mohalla)
         }
     }
 

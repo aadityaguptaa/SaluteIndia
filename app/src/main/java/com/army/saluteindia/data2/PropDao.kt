@@ -68,4 +68,10 @@ interface PropDao {
     @Query("SELECT * FROM mohalla_table WHERE village_id = :id")
     fun getMohallaList(id: Int): LiveData<List<MOHALLA>>
 
+    @Query("SELECT * FROM house_table")
+    fun getHouseList(): LiveData<List<HOUSES>>
+
+    @Query("SELECT * FROM house_table WHERE mohalla_id = :id")
+    fun getHouseList(id: Int): LiveData<List<HOUSES>>
+
 }
