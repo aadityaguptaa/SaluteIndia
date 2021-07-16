@@ -6,7 +6,7 @@
     android:layout_height="100dp"
     android:layout_margin="8dp"
     android:elevation="8dp"
-    app:cardCornerRadius="2dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="0dp"
     app:strokeColor="@color/material_on_surface_stroke"
     app:strokeWidth="1dp">
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Villages: " />
+                android:text="Villages:" />
 
             <TextView
                 android:id="@+id/noOfVillagesCoy"
@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Mohallas" />
+                android:text="Mohallas:" />
 
             <TextView
                 android:id="@+id/noOfMohallasCoy"

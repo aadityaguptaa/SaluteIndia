@@ -28,6 +28,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
 
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="73dp"
                 android:layout_height="73dp"
@@ -61,7 +62,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:orientation="vertical">
 
 
@@ -91,8 +91,8 @@
                         app:cardUseCompatPadding="false">
 
                         <LinearLayout
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|center_horizontal"
                             android:gravity="center"
                             android:orientation="vertical">
@@ -127,8 +127,8 @@
                         app:cardUseCompatPadding="false">
 
                         <LinearLayout
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|center_horizontal"
                             android:gravity="center"
                             android:orientation="vertical">
@@ -163,8 +163,8 @@
                         app:cardElevation="20dp">
 
                         <LinearLayout
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|center_horizontal"
                             android:gravity="center"
                             android:orientation="vertical">
@@ -196,8 +196,8 @@
                         app:cardElevation="20dp">
 
                         <LinearLayout
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|center_horizontal"
                             android:gravity="center"
                             android:orientation="vertical">
@@ -230,8 +230,8 @@
                         app:cardElevation="20dp">
 
                         <LinearLayout
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|center_horizontal"
                             android:gravity="center"
                             android:orientation="vertical">
@@ -263,8 +263,8 @@
                         app:cardElevation="20dp">
 
                         <LinearLayout
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|center_horizontal"
                             android:gravity="center"
                             android:orientation="vertical">
@@ -296,8 +296,8 @@
                         app:cardElevation="20dp">
 
                         <LinearLayout
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|center_horizontal"
                             android:gravity="center"
                             android:orientation="vertical">
@@ -329,8 +329,8 @@
                         app:cardElevation="20dp">
 
                         <LinearLayout
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|center_horizontal"
                             android:gravity="center"
                             android:orientation="vertical">
@@ -349,8 +349,16 @@
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
-
                 </GridLayout>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_baseline_add_24" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
