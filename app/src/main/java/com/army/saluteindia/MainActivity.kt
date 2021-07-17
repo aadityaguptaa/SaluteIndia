@@ -2,18 +2,27 @@ package com.army.saluteindia
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.army.saluteindia.data2.database
 import com.army.saluteindia.data2.entities.*
+import com.army.saluteindia.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel: OverviewViewModel by lazy {
+        ViewModelProvider(this).get(OverviewViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val dao = database.getInstance(this).dao
+
+
 
         var btns = listOf(
             BTN(1, "78 BN", 3, 27, 150, 600, 2800)

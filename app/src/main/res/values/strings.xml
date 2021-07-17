@@ -6,4 +6,7 @@
     <string name="search">search</string>
     <string name="longitude_hint">Longitude</string>
     <string name="plot_lat_long_on_google_map">Plot Lat/Long on Google Map</string>
+    <string name="head_info"><u>Family Head Information </u></string>
+    <string name="personal_info"><u>Personal Information</u></string>
+    <string name="land_info"><u>House / Land Information</u></string>
 </resources>
