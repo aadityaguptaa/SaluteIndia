@@ -38,7 +38,7 @@ class MohallaFragment : Fragment() {
         var village = args.villageId
 
         viewModel = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
-        if(village != -1) {
+        if(village != "home") {
             viewModel.getMohallas(village)
         }
 

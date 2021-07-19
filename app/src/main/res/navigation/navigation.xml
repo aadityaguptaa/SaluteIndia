@@ -35,7 +35,7 @@
         tools:layout="@layout/fragment_village" >
         <argument
             android:name="coyName"
-            app:argType="integer" />
+            app:argType="string" />
         <action
             android:id="@+id/action_villageFragment_to_mohallaFragment"
             app:destination="@id/mohallaFragment" />
@@ -46,7 +46,7 @@
         android:label="MohallaFragment" >
         <argument
             android:name="villageId"
-            app:argType="integer" />
+            app:argType="string" />
         <action
             android:id="@+id/action_mohallaFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
@@ -58,14 +58,20 @@
         tools:layout="@layout/fragment_maps" >
         <argument
             android:name="mohallaId"
-            app:argType="integer" />
+            app:argType="string" />
         <action
             android:id="@+id/action_mapsFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:popUpTo="@id/mapsFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.army.saluteindia.map.Details.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="houseDetails"
+            app:argType="com.army.saluteindia.map.mapsToDetails" />
+    </fragment>
 </navigation>

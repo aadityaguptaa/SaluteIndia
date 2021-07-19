@@ -5,6 +5,7 @@ import androidx.room.Relation
 import com.army.saluteindia.data2.entities.BTN
 import com.army.saluteindia.data2.entities.COY
 
+/*
 data class BtnWithCoy (
 
     @Embedded val btn: BTN,
@@ -13,4 +14,4 @@ data class BtnWithCoy (
         entityColumn = "btn_id"
     )
     val coys: List<COY>
-)
+)*/

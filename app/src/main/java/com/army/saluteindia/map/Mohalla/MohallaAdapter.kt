@@ -37,7 +37,7 @@ class MohallaAdapter: RecyclerView.Adapter<MohallaAdapter.MyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.mohallaName.text = mohallaList[position].mohalla_name
+        holder.mohallaName.text = mohallaList[position].id
         holder.familyCount.text = mohallaList[position].family_count.toString()
         holder.houseCount.text = mohallaList[position].family_count.toString()
 

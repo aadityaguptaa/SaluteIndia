@@ -9,7 +9,7 @@ import com.army.saluteindia.data2.entities.VILLAGE
 data class CoyWithVillages (
     @Embedded val coy: COY,
     @Relation(
-        parentColumn = "id",
+        parentColumn = "_id",
         entityColumn = "coy_id"
     )
     val villages: List<VILLAGE>

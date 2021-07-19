@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.army.saluteindia.R
 import com.army.saluteindia.data.PropertyViewModel
+import com.army.saluteindia.data2.database
 import com.army.saluteindia.data2.viewModel
 import com.army.saluteindia.map.Mohalla.MohallaFragmentArgs
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -21,6 +23,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.coroutines.launch
 
 
 class MapsFragment : Fragment() {
@@ -57,14 +60,53 @@ class MapsFragment : Fragment() {
 
         var latSum = 0.0
         var longsum = 0.0
+
+        val dao = database.getInstance(requireContext()).dao
+
         for(i in 0..listsize){
             var latlong = houseList[i]
             latSum += latlong.lat.toDouble()
             longsum += latlong.lon.toDouble()
             val sydney = LatLng(latlong.lat.toDouble(), latlong.lon.toDouble())
             googleMap.addMarker(MarkerOptions().position(sydney).title(latlong.house))
-            googleMap.setOnInfoWindowClickListener { findNavController().navigate(MapsFragmentDirections.actionMapsFragmentToDetailsFragment()) }
+
         }
+
+        googleMap.setOnInfoWindowClickListener {
+            var house = it.title
+
+            lifecycleScope.launch {
+                var houseProperty = dao.getHouseWithId(house)
+
+                var village = houseProperty.village_id
+                var mohalla = houseProperty.mohalla_id.toString()
+                val houseNo = houseProperty.house
+                var name = houseProperty.husband_id.toString()
+                var fatherName = houseProperty.father_id.toString()
+                val surname = "adi"
+                var age = 27
+                var mobileNumber = "9887554978"
+                var occupation = "student"
+                val landArea =houseProperty.property.toString()
+                val houseType = houseProperty.perimeterFence
+                val colour = houseProperty.colour
+                val shed = houseProperty.cowshed
+                val floor = houseProperty.floor
+
+                var husband = dao.getPersonWithId(houseProperty.husband_id)
+                name = husband.name
+                Log.i("asdfg", name)
+                age = husband.age
+                mobileNumber = husband.tel
+                var father = dao.getPersonWithId(houseProperty.father_id)
+                fatherName = father.name
+                mohalla = houseProperty.mohalla_id
+
+                val house = mapsToDetails(village, mohalla, houseNo, name, fatherName, surname, age, mobileNumber, occupation, landArea, houseType, colour, shed, floor)
+                findNavController().navigate(MapsFragmentDirections.actionMapsFragmentToDetailsFragment(house)) }
+
+        }
+
 
 
         var ll = LatLng(latSum/(listsize+1), longsum/(listsize+1))

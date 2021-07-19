@@ -25,8 +25,8 @@ data class HOUSES(
     var husband_id: Int,
     var wife_id: Int,
     var btn_id: Int,
-    var coy_id: Int,
-    var village_id: Int,
-    var mohalla_id: Int
+    var coy_id: String,
+    var village_id: String,
+    var mohalla_id: String
 
 )

@@ -7,11 +7,10 @@ import androidx.room.PrimaryKey
 data class VILLAGE (
 
     @PrimaryKey(autoGenerate = false)
-    var id: Int,
-    var village_name: String,
+    var id: String,
     var mohalla_count: Int,
     var family_count: Int,
     var member_count: Int,
-    var coy_id: Int
+    var coy_id: String
 
 )

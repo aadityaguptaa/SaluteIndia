@@ -26,27 +26,27 @@ interface PropDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPerson(person: PERSON)
 
-    @Transaction
+    /*@Transaction
     @Query("SELECT * FROM btn_table where b_Name = :btn")
-    suspend fun getBtnWithCoys(btn: String): List<BtnWithCoy>
+    suspend fun getBtnWithCoys(btn: String): List<BtnWithCoy>*/
 
     @Transaction
-    @Query("SELECT * FROM village_table where village_name = :village")
+    @Query("SELECT * FROM village_table where id = :village")
     suspend fun getVillageWithMohallas(village: String): List<villageWithMohallas>
 
     @Transaction
-    @Query("SELECT * FROM mohalla_table where mohalla_name = :mohalla")
+    @Query("SELECT * FROM mohalla_table where id = :mohalla")
     suspend fun getMohallaWithHouses(mohalla: String): List<MohallaWithHouses>
 
     @Transaction
-    @Query("SELECT * FROM coy_table where coy_Name = :coy")
+    @Query("SELECT * FROM coy_table where _id = :coy")
     suspend fun getCoyWithVillages(coy: String): List<CoyWithVillages>
 
     @Transaction
-    @Query("SELECT * FROM coy_table where coy_Name = :coy")
+    @Query("SELECT * FROM coy_table where _id = :coy")
     suspend fun getCoyWithHouses(coy: String): List<CoyWithHouses>
 
-    @Query("SELECT * FROM village_table where village_name = :village")
+    @Query("SELECT * FROM village_table where id = :village")
     suspend fun getVillageWithHouses(village: String): List<VillageWithHouses>
 
     @Transaction
@@ -60,18 +60,32 @@ interface PropDao {
     fun getVillageList(): LiveData<List<VILLAGE>>
 
     @Query("SELECT * FROM village_table WHERE coy_id = :id")
-    fun getVillageList(id: Int): LiveData<List<VILLAGE>>
+    fun getVillageList(id: String): LiveData<List<VILLAGE>>
 
     @Query("SELECT * FROM mohalla_table")
     fun getMohallaList(): LiveData<List<MOHALLA>>
 
     @Query("SELECT * FROM mohalla_table WHERE village_id = :id")
-    fun getMohallaList(id: Int): LiveData<List<MOHALLA>>
+    fun getMohallaList(id: String): LiveData<List<MOHALLA>>
 
     @Query("SELECT * FROM house_table")
     fun getHouseList(): LiveData<List<HOUSES>>
 
     @Query("SELECT * FROM house_table WHERE mohalla_id = :id")
-    fun getHouseList(id: Int): LiveData<List<HOUSES>>
+    fun getHouseList(id: String): LiveData<List<HOUSES>>
 
+    @Query("SELECT id FROM village_table WHERE id = :id")
+    suspend fun getVillageWithId(id: String): String
+
+    @Query("SELECT id FROM mohalla_table WHERE id = :id")
+    suspend fun getMohallaWithId(id: String): String
+
+    @Query("SELECT * FROM PERSON_TABLE WHERE id = :id")
+    suspend fun getPersonWithId(id: Int): PERSON
+
+    @Query("SELECT * FROM HOUSE_TABLE WHERE house = :id")
+    suspend fun getHouseWithId(id: String): HOUSES
+
+    @Query("UPDATE house_table SET village_id = :villageName WHERE house = :houseId")
+    suspend fun updateVillageOfHouse(villageName: String, houseId: String)
 }

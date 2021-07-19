@@ -42,7 +42,7 @@ class VillageFragment : Fragment() {
         val dao = database.getInstance(requireContext()).dao
 
         viewModel = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
-        if(coy != -1) {
+        if(coy != "home") {
             viewModel.getVillages(coy)
         }
 

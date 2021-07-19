@@ -57,7 +57,7 @@
                     app:layout_constraintStart_toEndOf="@+id/imageView4"
                     app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
-                <TextView
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/villageNameDetailsFragment"
                     style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
                     android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
                     app:layout_constraintStart_toEndOf="@+id/imageView5"
                     app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
-                <TextView
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/mohallaNameDetailsFragment"
                     style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
                     android:layout_width="wrap_content"
@@ -222,7 +222,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:text="Adi"
+                            android:text="Something"
                             app:layout_constraintBottom_toBottomOf="@+id/textView10"
                             app:layout_constraintStart_toEndOf="@+id/textView10"
                             app:layout_constraintTop_toTopOf="@+id/textView10" />
@@ -326,6 +326,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -344,6 +345,7 @@
 
                         <TextView
                             android:id="@+id/textView27"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -469,6 +471,18 @@
                             app:layout_constraintTop_toTopOf="@+id/textView34" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/applyChangesButtonDetailsFragment"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="Apply Changes"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView3" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

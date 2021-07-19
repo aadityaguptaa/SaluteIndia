@@ -32,19 +32,19 @@ class viewModel(application: Application): AndroidViewModel(application) {
 
     }
 
-    fun getVillages(coy: Int){
+    fun getVillages(coy: String){
         viewModelScope.launch(Dispatchers.IO) {
             villages = repository.getVillages(coy)
         }
     }
 
-    fun getMohallas(village: Int){
+    fun getMohallas(village: String){
         viewModelScope.launch(Dispatchers.IO) {
             mohallas = repository.getMohallas(village)
         }
     }
 
-    fun getHouses(mohalla: Int){
+    fun getHouses(mohalla: String){
         viewModelScope.launch(Dispatchers.IO) {
             houses = repository.getHouses(mohalla)
         }

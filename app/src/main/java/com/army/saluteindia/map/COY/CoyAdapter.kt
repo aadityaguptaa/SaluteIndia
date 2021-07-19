@@ -8,12 +8,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.army.saluteindia.R
-import com.army.saluteindia.data.Property
 import com.army.saluteindia.data2.entities.COY
 
 class CoyAdapter: RecyclerView.Adapter<CoyAdapter.MyViewHolder>() {
 
     var coyList = emptyList<COY>()
+
+
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val coyName: TextView = itemView.findViewById(R.id.companyName)
@@ -31,14 +32,14 @@ class CoyAdapter: RecyclerView.Adapter<CoyAdapter.MyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.coyName.text = coyList[position].coy_Name.toString()
-        holder.noOfVillages.text = coyList[position].village_count.toString()
-        holder.noOfMohallas.text = coyList[position].mohalla_count.toString()
-        holder.noOfHouses.text = coyList[position].family_count.toString()
-        holder.noOfFamily.text = coyList[position].family_count.toString()
+        holder.coyName.text = coyList[position]._id
+        holder.noOfVillages.text = coyList[position].villagesCount.toString()
+        holder.noOfMohallas.text = coyList[position].mohallasCount.toString()
+        holder.noOfHouses.text = coyList[position].housesCount.toString()
+        holder.noOfFamily.text = coyList[position].housesCount.toString()
 
         holder.constraintLayout.setOnClickListener {
-            Navigation.findNavController(holder.constraintLayout).navigate(CoyFragmentDirections.actionCoyFragmentToVillageFragment(coyList[position].id))
+            Navigation.findNavController(holder.constraintLayout).navigate(CoyFragmentDirections.actionCoyFragmentToVillageFragment(coyList[position]._id))
         }
     }
 
@@ -48,9 +49,13 @@ class CoyAdapter: RecyclerView.Adapter<CoyAdapter.MyViewHolder>() {
 
 
 
-    fun setData(coy: List<COY>){
-        this.coyList = coy
+    fun setData(coy: List<COY>?){
+
+        if (coy != null) {
+            this.coyList = coy
+        }
         notifyDataSetChanged()
+
     }
 
 

@@ -1,5 +1,6 @@
 package com.army.saluteindia.network
 
+import com.army.saluteindia.network.coys.CoyData
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -7,10 +8,10 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Headers
+import retrofit2.http.Path
 
-private const val BASE_URL = "https://72994389a3a9.ngrok.io/"
+private const val BASE_URL = "https://21a682469676.ngrok.io/"
 
 
 private val moshi = Moshi.Builder()
@@ -25,14 +26,15 @@ private val retrofit = Retrofit.Builder()
 
 public interface ApiService{
 
-    @Headers(value=["Auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
+    @Headers(value=["Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
     @GET("/coy")
-    fun getHousesFromAPI():
-            Deferred<Coy>
-/*
-    Call<Houses> getHousesFromAPI(@Header("Auth:") token: String)
-*/
+    fun getCoysFromAPI():
+            Deferred<CoyData>
 
+    /*@Headers(value=["Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
+    @GET("/coy?coyName={coy}&type=villages")
+    fun getVillagesFromAPI(@Path("coy") coy: String):
+            Deferred<data>*/
 }
 
 object RestApi{

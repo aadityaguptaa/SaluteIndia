@@ -7,9 +7,8 @@ import androidx.room.PrimaryKey
 data class MOHALLA(
 
     @PrimaryKey(autoGenerate = false)
-    var id: Int,
-    var mohalla_name: String,
+    var id: String,
     var family_count: Int,
     var member_count: Int,
-    var village_id: Int
+    var village_id: String
 )

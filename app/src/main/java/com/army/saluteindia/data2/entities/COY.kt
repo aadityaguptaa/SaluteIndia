@@ -7,12 +7,9 @@ import androidx.room.PrimaryKey
 data class COY (
 
     @PrimaryKey(autoGenerate = false)
-    var id: Int,
-    var coy_Name: String,
-    var village_count: Int,
-    var mohalla_count: Int,
-    var family_count: Int,
-    var members_count: Int,
-    var btn_id: Int
+    var _id: String,
+    var villagesCount: Int,
+    var mohallasCount: Int,
+    var housesCount: Int
 
 )

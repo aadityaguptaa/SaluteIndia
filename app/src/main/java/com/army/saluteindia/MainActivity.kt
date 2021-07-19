@@ -23,40 +23,41 @@ class MainActivity : AppCompatActivity() {
         val dao = database.getInstance(this).dao
 
 
+        viewModel.houses
 
         var btns = listOf(
             BTN(1, "78 BN", 3, 27, 150, 600, 2800)
         )
 
         var coys = listOf(
-            COY(1, "A Coy", 5, 23, 150, 600, 1),
-            COY(2, "B Coy", 3, 10, 150, 600, 1),
-            COY(3, "C Coy", 2, 3, 150, 600, 1)
+            COY( "A Coy", 5, 23, 150),
+            COY( "B COY", 3, 10, 150),
+            COY("C COY", 2, 3, 150)
         )
 
         var villages = listOf(
-            VILLAGE(1, "SANT", 5, 12, 60, 1),
-            VILLAGE(2, "BADLAPUR", 5, 14, 60, 1),
-            VILLAGE(3, "MAHATAMA", 5, 11, 60, 1),
-            VILLAGE(4, "RAMPUR", 5, 10, 60, 1),
-            VILLAGE(5, "RAMGARH", 5, 7, 60, 1),
-            VILLAGE(6, "AURANGABAD", 5, 15, 60, 2),
-            VILLAGE(7, "PHALTAN", 5, 15, 60, 2),
-            VILLAGE(8, "NANDED", 5, 15, 60, 2),
-            VILLAGE(9, "NILGIRI", 5, 15, 60, 3),
-            VILLAGE(10, "AGADGAON", 5, 15, 60, 3),
+            VILLAGE( "SANT", 5, 12, 60, "A Coy"),
+            VILLAGE( "BADLAPUR", 5, 14, 60, "A Coy"),
+            VILLAGE( "MAHATAMA", 5, 11, 60, "A Coy"),
+            VILLAGE( "RAMPUR", 5, 10, 60, "A Coy"),
+            VILLAGE( "RAMGARH", 5, 7, 60, "A Coy"),
+            VILLAGE( "AURANGABAD", 5, 15, 60, "B COY"),
+            VILLAGE( "PHALTAN", 5, 15, 60, "B COY"),
+            VILLAGE( "NANDED", 5, 15, 60, "B COY"),
+            VILLAGE("NILGIRI", 5, 15, 60, "C COY"),
+            VILLAGE( "AGADGAON", 5, 15, 60, "C COY"),
         )
 
         var mohallas = listOf(
-            MOHALLA(1, "Digvijay", 3, 9, 1),
-            MOHALLA(2, "Swami", 3, 9, 1),
-            MOHALLA(3, "Samarth", 3, 9, 1),
-            MOHALLA(4, "Ganesh", 3, 9, 2),
-            MOHALLA(5, "Zebra", 3, 9, 2),
-            MOHALLA(6, "Red", 3, 9, 3),
+            MOHALLA( "Digvijay", 3, 9, "SANT"),
+            MOHALLA( "Swami", 3, 9, "SANT"),
+            MOHALLA( "Samarth", 3, 9, "SANT"),
+            MOHALLA( "Ganesh", 3, 9, "BADLAPUR"),
+            MOHALLA( "Zebra", 3, 9, "BADLAPUR"),
+            MOHALLA( "Red", 3, 9, "MAHATAMA"),
         )
 
-        var houses = listOf(
+        val houses = listOf(
             HOUSES(
                 1,
                 "Z-1",
@@ -70,20 +71,20 @@ class MainActivity : AppCompatActivity() {
                 1,
                 3,
                 4,
-                3,
+                5,
+                2,
                 1,
-                3,
                 4,
                 1,
-                1,
-                1,
-                1
+                "A Coy",
+                "SANT",
+                "Digvijay"
             ),
             HOUSES(
                 2,
                 "Z-2",
-                "SINGLE",
-                "RED",
+                "DOUBLE",
+                "BLACK",
                 "N",
                 "Y",
                 2,
@@ -93,22 +94,24 @@ class MainActivity : AppCompatActivity() {
                 3,
                 4,
                 3,
-                1,
-                3,
-                4,
-                1,
-                1,
                 2,
-                1
+                3,
+                5,
+                1,
+                "A Coy",
+                "SANT",
+                "Digvijay"
             )
 
         )
 
         var person = listOf(
-            PERSON(1, "Aditya", 21, "9887554978"),
-            PERSON(2, "Tanya", 17, "9887554978"),
-            PERSON(3, "Rekha", 35, "0882934847"),
-            PERSON(4, "Pramod", 50, "9852371363"),
+            PERSON(1, "Aprameya", 21, "9887554978"),
+            PERSON(2, "Aviral", 17, "9887554978"),
+            PERSON(3, "Alyssa", 35, "0882934847"),
+            PERSON(4, "Amit", 50, "9852371363"),
+            PERSON(5, "Jasleen", 34, "9852371363"),
+
 
             )
 

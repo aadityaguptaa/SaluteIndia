@@ -15,15 +15,15 @@ class repository(private val propDao: PropDao) {
     val houses: LiveData<List<HOUSES>> = propDao.getHouseList()
 
 
-    suspend fun getVillages(coy: Int): LiveData<List<VILLAGE>> {
+    suspend fun getVillages(coy: String): LiveData<List<VILLAGE>> {
         return propDao.getVillageList(coy)
     }
 
-    suspend fun getMohallas(village: Int): LiveData<List<MOHALLA>> {
+    suspend fun getMohallas(village: String): LiveData<List<MOHALLA>> {
         return propDao.getMohallaList(village)
     }
 
-    suspend fun getHouses(mohalla: Int): LiveData<List<HOUSES>> {
+    suspend fun getHouses(mohalla: String): LiveData<List<HOUSES>> {
         return propDao.getHouseList(mohalla)
     }
 }

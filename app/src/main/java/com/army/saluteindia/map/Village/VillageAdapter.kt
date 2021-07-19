@@ -33,7 +33,7 @@ class VillageAdapter: RecyclerView.Adapter<VillageAdapter.MyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.villageName.text = villageList[position].village_name
+        holder.villageName.text = villageList[position].id
         holder.noOfMohallas.text = villageList[position].mohalla_count.toString()
         holder.noOfFamily.text = villageList[position].family_count.toString()
         holder.noOfHouses.text = villageList[position].family_count.toString()
