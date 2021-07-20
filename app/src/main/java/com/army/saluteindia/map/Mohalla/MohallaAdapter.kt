@@ -42,7 +42,7 @@ class MohallaAdapter: RecyclerView.Adapter<MohallaAdapter.MyViewHolder>() {
         holder.houseCount.text = mohallaList[position].family_count.toString()
 
         holder.constraintLayout.setOnClickListener {
-            Navigation.findNavController(holder.constraintLayout).navigate(MohallaFragmentDirections.actionMohallaFragmentToMapsFragment(mohallaList[position].id))
+            Navigation.findNavController(holder.constraintLayout).navigate(MohallaFragmentDirections.actionMohallaFragmentToHousesFragment(mohallaList[position].id))
         }
     }
 

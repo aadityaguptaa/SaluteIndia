@@ -46,8 +46,8 @@ interface PropDao {
     @Query("SELECT * FROM coy_table where _id = :coy")
     suspend fun getCoyWithHouses(coy: String): List<CoyWithHouses>
 
-    @Query("SELECT * FROM village_table where id = :village")
-    suspend fun getVillageWithHouses(village: String): List<VillageWithHouses>
+    /*@Query("SELECT * FROM village_table where id = :village")
+    suspend fun getVillageWithHouses(village: String): List<VillageWithHouses>*/
 
     @Transaction
     @Query("SELECT * FROM btn_table where b_Name = :btn")
@@ -100,4 +100,8 @@ interface PropDao {
 
     @Query("UPDATE house_table SET husband_id = :id WHERE house = :houseId")
     suspend fun updateheadInHouse(id: Int, houseId: String)
+
+    @Query("SELECT * FROM house_table WHERE mohalla_id = :id")
+    suspend fun getHouseListNotLive(id: String): List<HOUSES>
+
 }

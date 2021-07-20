@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class HOUSES(
 
     @PrimaryKey(autoGenerate = false)
-    var id: Int,
+    var id: String,
     var house: String,
     var floor: String,
     var colour: String,
@@ -17,7 +17,7 @@ data class HOUSES(
     var entryPoints: Int,
     var lat: String,
     var lon: String,
-    var property: Int,
+    var property: String,
     var mother_id: Int,
     var father_id: Int,
     var daughter_id: Int,
@@ -27,6 +27,9 @@ data class HOUSES(
     var btn_id: Int,
     var coy_id: String,
     var village_id: String,
-    var mohalla_id: String
+    var mohalla_id: String,
+    var husbandName: String,
+    var mobileNumber: String,
+    var age: String,
 
 )

@@ -48,6 +48,7 @@ class CoyFragment : Fragment() {
         binding.coyFragmentRecyclerView.adapter = coyAdapter
         binding.coyFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        viewModel2.getHouses()
         viewModel2._houses.observe(viewLifecycleOwner, Observer {
             Log.i("asdfg", it.toString())
             it.forEach {

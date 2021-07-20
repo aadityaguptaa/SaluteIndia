@@ -21,7 +21,6 @@ class CoyAdapter: RecyclerView.Adapter<CoyAdapter.MyViewHolder>() {
         val noOfVillages: TextView = itemView.findViewById(R.id.noOfVillagesCoy)
         val noOfMohallas: TextView = itemView.findViewById(R.id.noOfMohallasCoy)
         val noOfHouses: TextView = itemView.findViewById(R.id.noOfHousesCoy)
-        val noOfFamily: TextView = itemView.findViewById(R.id.noOfFamilyCoy)
 
         val constraintLayout: ConstraintLayout = itemView.findViewById(R.id.coyConstraintLayout)
     }
@@ -36,7 +35,6 @@ class CoyAdapter: RecyclerView.Adapter<CoyAdapter.MyViewHolder>() {
         holder.noOfVillages.text = coyList[position].villagesCount.toString()
         holder.noOfMohallas.text = coyList[position].mohallasCount.toString()
         holder.noOfHouses.text = coyList[position].housesCount.toString()
-        holder.noOfFamily.text = coyList[position].housesCount.toString()
 
         holder.constraintLayout.setOnClickListener {
             Navigation.findNavController(holder.constraintLayout).navigate(CoyFragmentDirections.actionCoyFragmentToVillageFragment(coyList[position]._id))

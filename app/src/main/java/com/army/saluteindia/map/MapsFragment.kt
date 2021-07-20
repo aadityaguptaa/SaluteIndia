@@ -18,6 +18,7 @@ import com.army.saluteindia.data2.database
 import com.army.saluteindia.data2.viewModel
 import com.army.saluteindia.map.Mohalla.MohallaFragmentArgs
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -63,6 +64,7 @@ class MapsFragment : Fragment() {
 
         val dao = database.getInstance(requireContext()).dao
 
+        googleMap.mapType = GoogleMap.MAP_TYPE_HYBRID
         for(i in 0..listsize){
             var latlong = houseList[i]
             latSum += latlong.lat.toDouble()

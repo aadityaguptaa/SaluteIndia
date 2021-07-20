@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
         val houses = listOf(
             HOUSES(
-                1,
+                "dsfsdfsd",
                 "Z-1",
                 "SINGLE",
                 "RED",
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                 2,
                 "28.679079",
                  "77.069710",
-                1,
+                "1 Kunal",
                 3,
                 4,
                 5,
@@ -79,10 +79,12 @@ class MainActivity : AppCompatActivity() {
                 1,
                 "A Coy",
                 "SANT",
-                "Digvijay"
+                "Digvijay",
+                "Aditya",
+                "9887554978", "21"
             ),
             HOUSES(
-                2,
+                "dfdfsdfsd",
                 "Z-2",
                 "DOUBLE",
                 "BLACK",
@@ -91,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                 2,
                 "30.679079",
                 "79.069710",
-                1,
+                "2 Kunal",
                 3,
                 4,
                 3,
@@ -101,7 +103,9 @@ class MainActivity : AppCompatActivity() {
                 1,
                 "A Coy",
                 "SANT",
-                "Digvijay"
+                "Digvijay",
+            "Aditya",
+                "9887554978", "21"
             )
 
         )
