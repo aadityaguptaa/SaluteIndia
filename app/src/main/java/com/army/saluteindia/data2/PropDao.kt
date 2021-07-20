@@ -88,4 +88,16 @@ interface PropDao {
 
     @Query("UPDATE house_table SET village_id = :villageName WHERE house = :houseId")
     suspend fun updateVillageOfHouse(villageName: String, houseId: String)
+
+    @Query("UPDATE house_table SET mohalla_id = :mohallaName WHERE house = :houseId")
+    suspend fun updateMohallaOfHouse(mohallaName: String, houseId: String)
+
+    @Query("SELECT * FROM mohalla_table WHERE village_id = :id AND id = :mohalla")
+    suspend fun getMohallaWithVillage(id: String, mohalla: String): MOHALLA
+
+    @Query("SELECT * FROM person_table where name = :name")
+    suspend fun getPersonWithName(name: String): PERSON
+
+    @Query("UPDATE house_table SET husband_id = :id WHERE house = :houseId")
+    suspend fun updateheadInHouse(id: Int, houseId: String)
 }

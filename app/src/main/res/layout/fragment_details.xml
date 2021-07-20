@@ -172,7 +172,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/headNameDetailsFragment"
                             style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
                             android:layout_width="wrap_content"
@@ -194,7 +194,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/fatherNameDetailsFragment"
                             style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
                             android:layout_width="wrap_content"
