@@ -41,12 +41,12 @@ class MohallaFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_mohalla, container, false
         )
 
-        var village = args.villageId
+        val village = args.villageId
 
         val dao = database.getInstance(requireContext()).dao
 
@@ -56,17 +56,17 @@ class MohallaFragment : Fragment() {
             viewModel.getMohallas(village)
         }
 
-        var mohallaAdapter = MohallaAdapter()
+        val mohallaAdapter = MohallaAdapter()
         binding.mohallaFragmentRecyclerView.adapter = mohallaAdapter
         binding.mohallaFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel2.getMohallas(village)
 
-        viewModel2._mohallas.observe(viewLifecycleOwner, Observer {
-            Log.i("asdfg", it.toString())
-            var mohallaList= mutableListOf<MOHALLA>()
-            it.forEach {
-                var mohalla = MOHALLA(it._id, it.houseCount, it.houseCount, village)
+        viewModel2._mohallas.observe(viewLifecycleOwner, Observer { list ->
+            Log.i("asdfg", list.toString())
+            val mohallaList= mutableListOf<MOHALLA>()
+            list.forEach {
+                val mohalla = MOHALLA(it._id, it.houseCount, it.houseCount, village)
                 mohallaList.add(mohalla)
                 lifecycleScope.launch {
                     dao.insertMohalla(mohalla)

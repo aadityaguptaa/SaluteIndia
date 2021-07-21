@@ -111,11 +111,11 @@ class MainActivity : AppCompatActivity() {
         )
 
         var person = listOf(
-            PERSON(1, "Aprameya", 21, "9887554978"),
-            PERSON(2, "Aviral", 17, "9887554978"),
-            PERSON(3, "Alyssa", 35, "0882934847"),
-            PERSON(4, "Amit", 50, "9852371363"),
-            PERSON(5, "Jasleen", 34, "9852371363"),
+            PERSON(1, "Aprameya", 21, "9887554978", "student"),
+            PERSON(2, "Aviral", 17, "9887554978", "student"),
+            PERSON(3, "Alyssa", 35, "0882934847", "Teacher"),
+            PERSON(4, "Amit", 50, "9852371363", "Professor"),
+            PERSON(5, "Jasleen", 34, "9852371363", "student"),
 
 
             )

@@ -60,11 +60,11 @@ class VillageFragment : Fragment() {
 
         viewModel2.getVillages(args.coyName)
 
-        viewModel2._villages.observe(viewLifecycleOwner, Observer {
-            Log.i("asdfg", it.toString())
-            var villList= mutableListOf<VILLAGE>()
-            it.forEach {
-                var village = VILLAGE(it._id, it.mohallaCount, it.houseCount, it.mohallaCount, coy)
+        viewModel2._villages.observe(viewLifecycleOwner, Observer { list ->
+            Log.i("asdfg", list.toString())
+            val villList= mutableListOf<VILLAGE>()
+            list.forEach {
+                val village = VILLAGE(it._id, it.mohallaCount, it.houseCount, it.mohallaCount, coy)
                 villList.add(village)
                 lifecycleScope.launch {
                     dao.insertVillage(village)
@@ -73,10 +73,10 @@ class VillageFragment : Fragment() {
             villageAdapter.setData(villList)
         })
 
-        /*Thread.sleep(100)
+        Thread.sleep(100)
         viewModel.villages.observe(viewLifecycleOwner, Observer {
             villageAdapter.setData(it)
-        })*/
+        })
 
 
 
