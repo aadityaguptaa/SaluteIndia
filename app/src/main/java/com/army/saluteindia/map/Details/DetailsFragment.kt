@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.army.saluteindia.R
 import com.army.saluteindia.data2.database
@@ -48,6 +49,10 @@ class DetailsFragment : Fragment() {
             binding.colourDetailsFragment.text = args.houseDetails.colour
             binding.shedDetailsFragment.text = args.houseDetails.cowshed
             binding.floorDetailsFragment.text = args.houseDetails.floor
+        }
+
+        binding.mapImageDetailsFragment.setOnClickListener {
+            Navigation.findNavController(it).navigate(DetailsFragmentDirections.actionDetailsFragmentToMapsFragment(args.houseDetails.mohalla_id))
         }
 
         binding.applyChangesButtonDetailsFragment.setOnClickListener{

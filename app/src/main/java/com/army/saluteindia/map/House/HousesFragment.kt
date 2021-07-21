@@ -86,7 +86,6 @@ class HousesFragment : Fragment() {
             binding.companyNameHouseMainFragment.text =houseList[0].coy_id
             binding.houseFragmentProgressbar.isVisible = false
         }
-
         return binding.root
     }
 

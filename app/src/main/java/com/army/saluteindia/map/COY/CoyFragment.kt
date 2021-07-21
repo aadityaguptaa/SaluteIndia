@@ -11,10 +11,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.army.saluteindia.ListAdapter
 import com.army.saluteindia.OverviewViewModel
 import com.army.saluteindia.R
-import com.army.saluteindia.data.PropertyViewModel
 import com.army.saluteindia.data2.database
 import com.army.saluteindia.data2.viewModel
 import com.army.saluteindia.databinding.FragmentCoyBinding
@@ -48,8 +46,10 @@ class CoyFragment : Fragment() {
         binding.coyFragmentRecyclerView.adapter = coyAdapter
         binding.coyFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel2.getHouses()
-        viewModel2._houses.observe(viewLifecycleOwner, Observer {
+        lifecycleScope.launch {
+            viewModel2.getHouses()
+        }
+        viewModel2._coys.observe(viewLifecycleOwner, Observer {
             Log.i("asdfg", it.toString())
             it.forEach {
                 lifecycleScope.launch {

@@ -16,15 +16,20 @@ class OverviewViewModel: ViewModel() {
     val response: LiveData<String>
         get() = _response
 
-    val _houses = MutableLiveData<List<COY>>()
+    val _coys = MutableLiveData<List<COY>>()
 
-    val houses: LiveData<List<COY>>
-        get() = _houses
+    val coys: LiveData<List<COY>>
+        get() = _coys
 
     val _villages = MutableLiveData<List<Data>>()
 
     val villages: LiveData<List<Data>>
         get() = _villages
+
+    val _villagesComplete = MutableLiveData<List<Data>>()
+
+    val villagesComplete: LiveData<List<Data>>
+        get() = _villagesComplete
 
     val _mohallas = MutableLiveData<List<com.army.saluteindia.network.mohallas.Data>>()
 
@@ -36,11 +41,21 @@ class OverviewViewModel: ViewModel() {
     val houses2: LiveData<List<com.army.saluteindia.network.houses.Data>>
         get() = _houses2
 
+    val _mohallasComplete = MutableLiveData<List<com.army.saluteindia.network.mohallas.Data>>()
+
+    val mohallasComplete: LiveData<List<com.army.saluteindia.network.mohallas.Data>>
+        get() = _mohallasComplete
+
+    val _housesComplete = MutableLiveData<List<com.army.saluteindia.network.houses.Data>>()
+
+    val housesComplete: LiveData<List<com.army.saluteindia.network.houses.Data>>
+        get() = _housesComplete
+
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
 
-    fun getHouses(){
+    suspend fun getHouses(){
 
         coroutineScope.launch {
             Log.i("asdf", "hello")
@@ -48,15 +63,15 @@ class OverviewViewModel: ViewModel() {
             try{
                 val listResult = getPropertiesDeferred.await()
                 _response.value = listResult.toString()
-                Log.i("asdf", _response.value!!)
+                Log.i("housesOverview", _response.value!!)
                 if(listResult.data.coy.isNotEmpty()){
-                    _houses.value = listResult.data.coy
+                    _coys.value = listResult.data.coy
                 }
 
 
             }catch (t: Throwable){
                 _response.value = "Failure: " + t.message
-                Log.i("asdf", t.message.toString())
+                Log.i("housesOverview", t.message.toString())
             }
         }
     }
@@ -117,6 +132,57 @@ class OverviewViewModel: ViewModel() {
             }catch (t: Throwable){
                 _response.value = "Failure: " + t.message
                 Log.i("asdf", t.message.toString())
+            }
+        }
+    }
+
+    suspend fun getCompleteVillageList(){
+        coroutineScope.launch {
+            val getPropertiesDeferred = RestApi.RETROFIT_SERVICE.getVillagesList()
+            try{
+                val listResult = getPropertiesDeferred.await()
+                _response.value = listResult.toString()
+                Log.i("villagesOverview", _response.value!!)
+                if(listResult.data != null){
+                    _villagesComplete.value = listResult.data
+                }
+            }catch (t: Throwable){
+                _response.value = "Failure: " + t.message
+                Log.i("villagesOverview", t.message.toString())
+            }
+        }
+    }
+
+    suspend fun getCompleteMohallaList(){
+        coroutineScope.launch {
+            val getPropertiesDeferred = RestApi.RETROFIT_SERVICE.getMohallasList()
+            try{
+                val listResult = getPropertiesDeferred.await()
+                _response.value = listResult.toString()
+                Log.i("mohallasOverview", _response.value!!)
+                if(listResult.data != null){
+                    _mohallasComplete.value = listResult.data
+                }
+            }catch (t: Throwable){
+                _response.value = "Failure: " + t.message
+                Log.i("mohallasOverview", t.message.toString())
+            }
+        }
+    }
+
+    suspend fun getCompleteHousesList(){
+        coroutineScope.launch {
+            val getPropertiesDeferred = RestApi.RETROFIT_SERVICE.getHousesList()
+            try{
+                val listResult = getPropertiesDeferred.await()
+                _response.value = listResult.toString()
+                Log.i("housesOverview", _response.value!!)
+                if(listResult.data != null){
+                    _housesComplete.value = listResult.data
+                }
+            }catch (t: Throwable){
+                _response.value = "Failure: " + t.message
+                Log.i("housesOverview", t.message.toString())
             }
         }
     }
