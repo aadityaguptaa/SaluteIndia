@@ -74,7 +74,7 @@ class MapsFragment : Fragment() {
 
         }
 
-        googleMap.setOnInfoWindowClickListener {
+        /*googleMap.setOnInfoWindowClickListener {
             var house = it.title
 
             lifecycleScope.launch {
@@ -107,7 +107,7 @@ class MapsFragment : Fragment() {
                 val house = mapsToDetails(village, mohalla, houseNo, name, fatherName, surname, age, mobileNumber, occupation, landArea, houseType, colour, shed, floor)
                 findNavController().navigate(MapsFragmentDirections.actionMapsFragmentToDetailsFragment(house)) }
 
-        }
+        }*/
 
 
 

@@ -75,7 +75,10 @@
         tools:layout="@layout/fragment_details" >
         <argument
             android:name="houseDetails"
-            app:argType="com.army.saluteindia.map.mapsToDetails" />
+            app:argType="com.army.saluteindia.data2.entities.HOUSES" />
+        <action
+            android:id="@+id/action_detailsFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/housesFragment"
@@ -85,7 +88,7 @@
             android:name="mohallaId"
             app:argType="string" />
         <action
-            android:id="@+id/action_housesFragment_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
+            android:id="@+id/action_housesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
 </navigation>

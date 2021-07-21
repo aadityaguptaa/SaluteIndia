@@ -10,5 +10,6 @@ data class PERSON (
     var id: Int,
     var name: String,
     var age: Int,
-    var tel: String
+    var tel: String,
+    var occupation: String
 )

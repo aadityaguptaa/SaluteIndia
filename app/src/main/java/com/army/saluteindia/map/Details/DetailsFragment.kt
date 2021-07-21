@@ -32,19 +32,23 @@ class DetailsFragment : Fragment() {
 
         val dao = database.getInstance(requireContext()).dao
 
+        lifecycleScope.launch{
+            val husbandName = dao.getPersonWithId(args.houseDetails.husband_id)
+            val fatherName = dao.getPersonWithId(args.houseDetails.father_id)
 
-        binding.villageNameDetailsFragment.setText(args.houseDetails.village)
-        binding.mohallaNameDetailsFragment.setText(args.houseDetails.mohalla)
-        binding.houseNumberDetailsFragment.text = args.houseDetails.houseNo
-        binding.headNameDetailsFragment.setText(args.houseDetails.name)
-        binding.fatherNameDetailsFragment.setText(args.houseDetails.fatherName)
-        binding.ageDetailsFragment.text = args.houseDetails.age.toString()
-        binding.mobileDetailsFragment.text = args.houseDetails.mobileNumber
-        binding.occupationDetailsFragment.text = args.houseDetails.occupation
-        binding.landAreaDetailsFragment.text = args.houseDetails.landArea
-        binding.colourDetailsFragment.text = args.houseDetails.colour
-        binding.shedDetailsFragment.text = args.houseDetails.shed
-        binding.floorDetailsFragment.text = args.houseDetails.floor
+            binding.villageNameDetailsFragment.setText(args.houseDetails.village_id)
+            binding.mohallaNameDetailsFragment.setText(args.houseDetails.mohalla_id)
+            binding.houseNumberDetailsFragment.text = args.houseDetails.house
+            binding.headNameDetailsFragment.setText(husbandName.name)
+            binding.fatherNameDetailsFragment.setText(fatherName.name)
+            binding.ageDetailsFragment.text = args.houseDetails.age.toString()
+            binding.mobileDetailsFragment.text = args.houseDetails.mobileNumber
+            binding.occupationDetailsFragment.text = husbandName.occupation
+            binding.landAreaDetailsFragment.text = args.houseDetails.property
+            binding.colourDetailsFragment.text = args.houseDetails.colour
+            binding.shedDetailsFragment.text = args.houseDetails.cowshed
+            binding.floorDetailsFragment.text = args.houseDetails.floor
+        }
 
         binding.applyChangesButtonDetailsFragment.setOnClickListener{
             val newVillage = binding.villageNameDetailsFragment.text.toString()
@@ -61,17 +65,15 @@ class DetailsFragment : Fragment() {
                     val mohallaWithVillage = dao.getMohallaWithVillage(village, mohalla)
 
                     if(village != null && mohalla!=null && mohallaWithVillage!=null){
-                        dao.updateVillageOfHouse(newVillage, args.houseDetails.houseNo)
-                        dao.updateMohallaOfHouse(newMohalla, args.houseDetails.houseNo)
-                        dao.updateheadInHouse(name.id, args.houseDetails.houseNo)
+                        dao.updateVillageOfHouse(newVillage, args.houseDetails.house)
+                        dao.updateMohallaOfHouse(newMohalla, args.houseDetails.house)
+                        dao.updateheadInHouse(name.id, args.houseDetails.house)
                         val toast = Toast.makeText(
                             requireContext(),
                             "Update Successful",
                             Toast.LENGTH_SHORT
-
                         )
                         toast.show()
-
                     }else{
                         val toast = Toast.makeText(
                             requireContext(),
@@ -79,12 +81,7 @@ class DetailsFragment : Fragment() {
                             Toast.LENGTH_SHORT
                         )
                         toast.show()
-
                     }
-
-
-
-
                 }catch(e: Exception){
                     val toast = Toast.makeText(
                         requireContext(),
@@ -94,9 +91,6 @@ class DetailsFragment : Fragment() {
 
                     toast.show()
                 }
-
-
-
             }
         }
 

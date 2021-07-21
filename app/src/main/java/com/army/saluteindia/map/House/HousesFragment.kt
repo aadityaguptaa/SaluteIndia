@@ -50,11 +50,14 @@ class HousesFragment : Fragment() {
 
         viewModel2.getHouses2(args.mohallaId)
 
-        viewModel2._houses2.observe(viewLifecycleOwner, Observer {
-            Log.i("asdfg", it.toString())
-            var houseList= mutableListOf<HOUSES>()
-            it.forEach {
-                var house = HOUSES(it._id, it.house, it.floor, it.colour, it.perimeterfence.toString(), it.cowshed.toString(), it.entryPoints.toInt(), it.geo.lat
+        viewModel2._houses2.observe(viewLifecycleOwner, Observer { list ->
+            Log.i("asdfg", list.toString())
+            val houseList= mutableListOf<HOUSES>()
+            binding.villageNameHouseMainFragment.text = list[0].village
+            binding.mohallaNameHouseMainFragment.text = list[0].mohalla
+            binding.companyNameHouseMainFragment.text =list[0].coy
+            list.forEach {
+                val house = HOUSES(it._id, it.house, it.floor, it.colour, it.perimeterfence.toString(), it.cowshed.toString(), it.entryPoints.toInt(), it.geo.lat
                 , it.geo.long, it.property, 1, 2, 3, 4, 5, 1, 1, it.coy, it.village, it.mohalla, it.husbandDocument.name, it.husbandDocument.tel, it.husbandDocument.age)
                 houseList.add(house)
                 lifecycleScope.launch {

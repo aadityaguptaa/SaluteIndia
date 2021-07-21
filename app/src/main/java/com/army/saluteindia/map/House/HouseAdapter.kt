@@ -61,7 +61,7 @@ class HouseAdapter: RecyclerView.Adapter<HouseAdapter.MyViewHolder>()  {
             ageHouseFragment.text = house.age
 
             houseConstraintLayout.setOnClickListener{
-                Navigation.findNavController(it).navigate(HousesFragmentDirections.actionHousesFragmentToMapsFragment(house.house))
+                Navigation.findNavController(it).navigate(HousesFragmentDirections.actionHousesFragmentToDetailsFragment(houses[position]))
             }
 
         }

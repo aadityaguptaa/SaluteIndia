@@ -1,10 +1,13 @@
 package com.army.saluteindia.data2.entities
 
+import android.os.Parcelable
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "house_table")
+@Parcelize
 data class HOUSES(
 
     @PrimaryKey(autoGenerate = false)
@@ -32,4 +35,4 @@ data class HOUSES(
     var mobileNumber: String,
     var age: String,
 
-)
+): Parcelable
