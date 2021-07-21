@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.army.saluteindia.R
 import com.army.saluteindia.data2.database
@@ -51,8 +52,25 @@ class DetailsFragment : Fragment() {
             binding.floorDetailsFragment.text = args.houseDetails.floor
         }
 
-        binding.mapImageDetailsFragment.setOnClickListener {
-            Navigation.findNavController(it).navigate(DetailsFragmentDirections.actionDetailsFragmentToMapsFragment(args.houseDetails.mohalla_id))
+
+
+
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.favorite -> {
+                    findNavController().navigate(DetailsFragmentDirections.actionDetailsFragmentToMapsFragment(args.houseDetails.mohalla_id))
+                    true
+                }
+                R.id.search -> {
+                    // Handle search icon press
+                    true
+                }
+                R.id.more -> {
+                    // Handle more item (inside overflow menu) press
+                    true
+                }
+                else -> false
+            }
         }
 
         binding.applyChangesButtonDetailsFragment.setOnClickListener{

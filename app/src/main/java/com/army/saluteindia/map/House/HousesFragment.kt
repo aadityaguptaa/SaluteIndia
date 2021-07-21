@@ -59,9 +59,11 @@ class HousesFragment : Fragment() {
             list.forEach {
                 val house = HOUSES(it._id, it.house, it.floor, it.colour, it.perimeterfence.toString(), it.cowshed.toString(), it.entryPoints.toInt(), it.geo.lat
                 , it.geo.long, it.property, 1, 2, 3, 4, 5, 1, 1, it.coy, it.village, it.mohalla, it.husbandDocument.name, it.husbandDocument.tel, it.husbandDocument.age)
-                houseList.add(house)
-                lifecycleScope.launch {
-                    dao.insertHouse(house)
+                if(house.mohalla_id == args.mohallaId){
+                    houseList.add(house)
+                    lifecycleScope.launch {
+                        dao.insertHouse(house)
+                    }
                 }
             }
             houseAdapter.houses = houseList

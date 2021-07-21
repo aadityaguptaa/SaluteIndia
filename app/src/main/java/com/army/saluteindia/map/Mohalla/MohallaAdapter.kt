@@ -6,48 +6,69 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.army.saluteindia.R
+import com.army.saluteindia.data2.entities.HOUSES
 import com.army.saluteindia.data2.entities.MOHALLA
+import com.army.saluteindia.databinding.HouseLayoutItemBinding
+import com.army.saluteindia.databinding.MohallaFragmentItemBinding
+import com.army.saluteindia.map.House.HouseAdapter
+import com.army.saluteindia.map.House.HousesFragmentDirections
 
 class MohallaAdapter: RecyclerView.Adapter<MohallaAdapter.MyViewHolder>() {
 
     var mohallaList = emptyList<MOHALLA>()
-/*
-    var countList = emptyList<Int>()
-*/
 
+    inner class MyViewHolder(val binding: MohallaFragmentItemBinding): RecyclerView.ViewHolder(binding.root){
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val mohallaName: TextView = itemView.findViewById(R.id.mohallaName)
-        val familyCount: TextView = itemView.findViewById(R.id.noOfFamilyMohalla)
-        val houseCount: TextView = itemView.findViewById(R.id.noOfHouseMohalla)
-
-/*
-        val noOfVillages: TextView = itemView.findViewById(R.id.noOfVillagesCOY)
-*/
-
-        val constraintLayout: ConstraintLayout = itemView.findViewById(R.id.mohallaConstraintLayout)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        var item = LayoutInflater.from(parent.context).inflate(R.layout.mohalla_fragment_item, parent, false)
+    private val diffCallback = object : DiffUtil.ItemCallback<MOHALLA>(){
+        override fun areItemsTheSame(oldItem: MOHALLA, newItem: MOHALLA): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-        return MyViewHolder(item)
-    }
-
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.mohallaName.text = mohallaList[position].id
-        holder.familyCount.text = mohallaList[position].family_count.toString()
-        holder.houseCount.text = mohallaList[position].family_count.toString()
-
-        holder.constraintLayout.setOnClickListener {
-            Navigation.findNavController(holder.constraintLayout).navigate(MohallaFragmentDirections.actionMohallaFragmentToHousesFragment(mohallaList[position].id))
+        override fun areContentsTheSame(oldItem: MOHALLA, newItem: MOHALLA): Boolean {
+            return oldItem == newItem
         }
     }
 
+    private val differ = AsyncListDiffer(this, diffCallback)
+    var mohallas: List<MOHALLA>
+        get() = differ.currentList
+        set(value) {differ.submitList(value) }
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MohallaAdapter.MyViewHolder {
+        return MyViewHolder(
+            MohallaFragmentItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: MohallaAdapter.MyViewHolder, position: Int) {
+        holder.binding.apply {
+            val mohalla = mohallas[position]
+            mohallaName.text = mohalla.id
+            noOfFamilyMohalla.text = mohalla.family_count.toString()
+            noOfHouseMohalla.text = mohalla.family_count.toString()
+
+            mohallaConstraintLayout.setOnClickListener{
+                Navigation.findNavController(it).navigate(MohallaFragmentDirections.actionMohallaFragmentToHousesFragment(mohalla.id))
+
+            }
+
+        }
+
+    }
+
     override fun getItemCount(): Int {
-        return mohallaList.size
+        return mohallas.size
     }
 
 

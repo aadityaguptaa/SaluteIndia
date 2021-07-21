@@ -12,7 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "https://3398447f1e59.ngrok.io/"
+private const val BASE_URL = "https://armyproj.herokuapp.com/"
 
 
 private val moshi = Moshi.Builder()

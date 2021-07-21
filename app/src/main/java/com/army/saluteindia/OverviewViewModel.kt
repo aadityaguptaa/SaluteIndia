@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.army.saluteindia.data2.entities.COY
+import com.army.saluteindia.data2.entities.HOUSES
 import com.army.saluteindia.network.RestApi
 import com.army.saluteindia.network.villages.Data
 import kotlinx.coroutines.*
@@ -124,8 +125,14 @@ class OverviewViewModel: ViewModel() {
                 val listResult = getPropertiesDeferred.await()
                 _response.value = listResult.toString()
                 Log.i("asdf", _response.value!!)
+                val lis = mutableListOf<com.army.saluteindia.network.houses.Data>()
+                listResult.data.forEach {
+                    if(it.mohalla == houseName){
+                        lis.add(it)
+                    }
+                }
                 if(listResult.data != null){
-                    _houses2.value = listResult.data
+                    _houses2.value = lis
                 }
 
 

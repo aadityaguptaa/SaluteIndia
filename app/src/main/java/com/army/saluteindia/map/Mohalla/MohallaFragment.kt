@@ -72,14 +72,14 @@ class MohallaFragment : Fragment() {
                     dao.insertMohalla(mohalla)
                 }
             }
-            mohallaAdapter.setData(mohallaList)
+            mohallaAdapter.mohallas = mohallaList
         })
 
         //REPAIR THIS THREAD !!!!!!!!!!!!!!!!!!!!!!!!!!
         Thread.sleep(100)
 
         viewModel.mohallas.observe(viewLifecycleOwner, Observer { t ->
-            mohallaAdapter.setData(t)
+            mohallaAdapter.mohallas = t
         })
 
         return binding.root
