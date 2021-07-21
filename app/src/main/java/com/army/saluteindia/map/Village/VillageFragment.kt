@@ -70,12 +70,12 @@ class VillageFragment : Fragment() {
                     dao.insertVillage(village)
                 }
             }
-            villageAdapter.setData(villList)
+            villageAdapter.villages = villList
         })
 
         Thread.sleep(100)
         viewModel.villages.observe(viewLifecycleOwner, Observer {
-            villageAdapter.setData(it)
+            villageAdapter.villages = it
         })
 
 
