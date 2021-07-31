@@ -8,6 +8,8 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
@@ -66,6 +68,13 @@ public interface ApiService{
     @GET("/coy?coyName={coy}&type=villages")
     fun getVillagesFromAPI(@Path("coy") coy: String):
             Deferred<data>*/
+
+    @Multipart
+    @POST("")
+    fun uploadImage(
+        @Part document: MultipartBody.Part,
+        @Part("desc") desc: RequestBody
+    )
 }
 
 object RestApi{

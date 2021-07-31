@@ -82,11 +82,12 @@ class HousesFragment : Fragment() {
 
             if(houseList != null) {
                 houseAdapter.houses = houseList as List<HOUSES>
+                binding.villageNameHouseMainFragment.text = houseList[0].village_id
+                binding.mohallaNameHouseMainFragment.text = houseList[0].mohalla_id
+                binding.companyNameHouseMainFragment.text =houseList[0].coy_id
+                binding.houseFragmentProgressbar.isVisible = false
             }
-            binding.villageNameHouseMainFragment.text = houseList[0].village_id
-            binding.mohallaNameHouseMainFragment.text = houseList[0].mohalla_id
-            binding.companyNameHouseMainFragment.text =houseList[0].coy_id
-            binding.houseFragmentProgressbar.isVisible = false
+
         }
         return binding.root
     }

@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.army.saluteindia.OverviewViewModel
 import com.army.saluteindia.R
 import com.army.saluteindia.data2.PropDao
@@ -60,25 +61,39 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMohallaFragment("home"))
         }
 
-        binding.downloadDataIcon.setOnClickListener {
+        binding.bottomAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.download -> {
+
+                    setData(dao)
+                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDownloadProgressFragment())
+                    true
+                }
+                R.id.upload -> {
+                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToUploadDocumentFragment())
+                    true
+                }
+                else -> false
+            }
+        }
+
+        /*binding.downloadDataIcon.setOnClickListener {
 
             lifecycleScope.launchWhenCreated {
-                binding.homeFragmentProgressBar.isVisible = true
                 viewModel.getHouses()
                 viewModel.getCompleteVillageList()
                 viewModel.getCompleteMohallaList()
                 viewModel.getCompleteHousesList()
-                binding.homeFragmentProgressBar.isVisible = false
 
             }
             getData(dao)
-        }
+        }*/
 
 
         return binding.root
     }
 
-    private fun getData(dao: PropDao) {
+    private fun setData(dao: PropDao) {
         viewModel._villagesComplete.observe(viewLifecycleOwner, Observer { list ->
             Log.i("villagesMain", list.toString())
             val villList = mutableListOf<VILLAGE>()
@@ -145,6 +160,10 @@ class HomeFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun getData(){
+
     }
 
 

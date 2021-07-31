@@ -19,6 +19,12 @@
         <action
             android:id="@+id/action_homeFragment_to_mohallaFragment"
             app:destination="@id/mohallaFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_downloadProgressFragment"
+            app:destination="@id/downloadProgressFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_uploadDocumentFragment"
+            app:destination="@id/uploadDocumentFragment" />
     </fragment>
     <fragment
         android:id="@+id/coyFragment"
@@ -90,5 +96,21 @@
         <action
             android:id="@+id/action_housesFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/downloadProgressFragment"
+        android:name="com.army.saluteindia.home.DownloadProgressFragment"
+        android:label="DownloadProgressFragment" >
+        <action
+            android:id="@+id/action_downloadProgressFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadDocumentFragment"
+        android:name="com.army.saluteindia.home.UploadDocumentFragment"
+        android:label="UploadDocumentFragment" >
+        <action
+            android:id="@+id/action_uploadDocumentFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
