@@ -61,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="145dp"
             android:layout_marginTop="145dp"
+            app:backgroundTint="#000000"
             android:src="@drawable/ic_baseline_cloud_upload_24"
             app:layout_constraintStart_toStartOf="@+id/uploadFragmentExcelImage"
             app:layout_constraintTop_toTopOf="@+id/uploadFragmentExcelImage" />

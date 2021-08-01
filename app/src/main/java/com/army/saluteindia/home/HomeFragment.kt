@@ -64,13 +64,16 @@ class HomeFragment : Fragment() {
         binding.bottomAppBar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId){
                 R.id.download -> {
-
                     setData(dao)
                     findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDownloadProgressFragment())
                     true
                 }
                 R.id.upload -> {
                     findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToUploadDocumentFragment())
+                    true
+                }
+                R.id.search -> {
+                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
                     true
                 }
                 else -> false
