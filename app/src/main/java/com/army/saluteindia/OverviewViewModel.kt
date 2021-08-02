@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.army.saluteindia.data2.entities.COY
 import com.army.saluteindia.data2.entities.HOUSES
+import com.army.saluteindia.network.NewHouse
 import com.army.saluteindia.network.RestApi
 import com.army.saluteindia.network.villages.Data
 import kotlinx.coroutines.*
@@ -193,6 +194,23 @@ class OverviewViewModel: ViewModel() {
             }
         }
     }
+
+    /*suspend fun createHouse(newHouse: NewHouse){
+        coroutineScope.launch {
+            val getHouseDeferred = RestApi.RETROFIT_SERVICE.createHouse(newHouse)
+            try{
+                val listResult = getHouseDeferred.await()
+                _response.value = listResult.toString()
+                Log.i("housesOverview", _response.value!!)
+                if(listResult != null){
+                    Log.i("asdf", listResult.toString())
+                }
+            }catch (t: Throwable){
+                _response.value = "Failure: " + t.message
+                Log.i("asdf", t.message.toString())
+            }
+        }
+    }*/
 
     override fun onCleared() {
         super.onCleared()

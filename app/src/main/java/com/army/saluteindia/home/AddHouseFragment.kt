@@ -1,15 +1,20 @@
 package com.army.saluteindia.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.army.saluteindia.OverviewViewModel
 import com.army.saluteindia.R
 import com.army.saluteindia.databinding.FragmentAddHouseBinding
 import com.army.saluteindia.databinding.FragmentHomeBinding
+import com.army.saluteindia.network.NewHouse
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
 
 
@@ -38,6 +43,10 @@ class AddHouseFragment : Fragment() {
     var latitude = ""
     var longitude = ""
 
+    private val viewModel: OverviewViewModel by lazy {
+        ViewModelProvider(this).get(OverviewViewModel::class.java)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,9 +58,13 @@ class AddHouseFragment : Fragment() {
 
         binding.ahfAddHouseButton.setOnClickListener{
             getValues()
-            lifecycleScope.launch {
-
-            }
+            var house = NewHouse(battalion, coy, village, mohalla, houseNo, name, relation, sex, age, occupation, mobileNo, property, floor, colour, rooms, perimeterFence, cowshed, entryPoints, latitude, longitude)
+            /*lifecycleScope.launch {
+                viewModel.createHouse(house)
+            }*/
+            var gson = Gson()
+            var json = gson.toJson(house)
+            Log.i("asdf", json)
         }
         return binding.root
     }
