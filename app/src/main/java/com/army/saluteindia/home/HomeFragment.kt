@@ -76,8 +76,12 @@ class HomeFragment : Fragment() {
                     findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
                     true
                 }
+
                 else -> false
             }
+        }
+        binding.hfAddHouseFloatButton.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAddHouseFragment())
         }
 
         /*binding.downloadDataIcon.setOnClickListener {

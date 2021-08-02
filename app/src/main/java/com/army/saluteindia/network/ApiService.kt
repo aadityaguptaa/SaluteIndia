@@ -75,6 +75,9 @@ public interface ApiService{
         @Part document: MultipartBody.Part,
         @Part("desc") desc: RequestBody
     )
+
+    @POST("posts")
+    fun createHouse(@Body house: NewHouse ): Deferred<NewHouse>
 }
 
 object RestApi{

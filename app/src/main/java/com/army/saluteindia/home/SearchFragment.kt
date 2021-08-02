@@ -15,6 +15,15 @@ import com.army.saluteindia.databinding.FragmentSearchBinding
 class SearchFragment : Fragment() {
 
     lateinit var binding: FragmentSearchBinding
+    var village = ""
+    var mohalla = ""
+    var name = ""
+    var fatherName = ""
+    var houseNo = ""
+    var mobileNumber = ""
+    var occupation = ""
+    var landArea = ""
+    var floor = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +36,24 @@ class SearchFragment : Fragment() {
         val items = listOf("Option 1", "Option 2", "Option 3", "Option 4")
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
         (binding.searchFragmentBattalionMenu.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+
+        binding.sfSearchButton.setOnClickListener{
+            getTextFields()
+        }
+
         return binding.root
+    }
+
+    private fun getTextFields() {
+        village = binding.sfVillage.editText?.text.toString()
+        mohalla = binding.sfMohalla.editText?.text.toString()
+        name = binding.sfName.editText?.text.toString()
+        fatherName = binding.sfFatherName.editText?.text.toString()
+        houseNo = binding.sfHouseNo.editText?.text.toString()
+        mobileNumber = binding.sfMobileNo.editText?.text.toString()
+        occupation = binding.sfOccupation.editText?.text.toString()
+        landArea = binding.sfLandArea.editText?.text.toString()
+        floor = binding.sfFloor.editText?.text.toString()
     }
 
 
