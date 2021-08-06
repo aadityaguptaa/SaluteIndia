@@ -88,6 +88,13 @@ public interface ApiService{
     @Headers(value=["Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
     @POST("/house")
     fun createHouse(@Body house: NewHouse ): Deferred<NewHouse>
+
+    @FormUrlEncoded
+    @POST("auth/login")
+    suspend fun login(
+        @Field("username") email: String,
+        @Field("password") password: String,
+    ) : Any
 }
 
 object RestApi{

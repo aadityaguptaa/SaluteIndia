@@ -14,7 +14,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.army.saluteindia.OverviewViewModel
 import com.army.saluteindia.R
-import com.army.saluteindia.data.PropertyViewModel
 import com.army.saluteindia.data2.database
 import com.army.saluteindia.data2.entities.MOHALLA
 import com.army.saluteindia.data2.entities.VILLAGE

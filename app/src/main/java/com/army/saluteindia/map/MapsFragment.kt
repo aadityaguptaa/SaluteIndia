@@ -13,7 +13,6 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.army.saluteindia.R
-import com.army.saluteindia.data.PropertyViewModel
 import com.army.saluteindia.data2.database
 import com.army.saluteindia.data2.viewModel
 import com.army.saluteindia.map.Mohalla.MohallaFragmentArgs

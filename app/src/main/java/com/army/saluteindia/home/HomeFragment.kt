@@ -15,6 +15,10 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.army.saluteindia.OverviewViewModel
 import com.army.saluteindia.R
+import com.army.saluteindia.data.networklogin.Resource
+import com.army.saluteindia.data.networklogin.UserApi
+import com.army.saluteindia.data.networklogin.responses.User
+import com.army.saluteindia.data.repository.UserRepository
 import com.army.saluteindia.data2.PropDao
 import com.army.saluteindia.data2.database
 import com.army.saluteindia.data2.entities.COY
@@ -24,84 +28,23 @@ import com.army.saluteindia.data2.entities.VILLAGE
 import com.army.saluteindia.databinding.ActivityMainBinding
 import com.army.saluteindia.databinding.FragmentHomeBinding
 import com.army.saluteindia.map.COY.CoyAdapter
+import com.army.saluteindia.ui.base.BaseFragment
+import com.army.saluteindia.utils.visible
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserRepository>() {
 
-    lateinit var binding: FragmentHomeBinding
 
-    private val viewModel: OverviewViewModel by lazy {
+    private val viewModelOverView: OverviewViewModel by lazy {
         ViewModelProvider(this).get(OverviewViewModel::class.java)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-
-        binding = DataBindingUtil.inflate(
-            layoutInflater, R.layout.fragment_home, container, false
-        )
-
-        val dao = database.getInstance(requireContext()).dao
-
-
-
-        binding.coy.setOnClickListener {view: View ->
-                Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_coyFragment)
-        }
-
-        binding.village.setOnClickListener {view: View ->
-            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToVillageFragment("home"))
-        }
-
-        binding.mohalla.setOnClickListener {view: View ->
-            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMohallaFragment("home"))
-        }
-
-        binding.bottomAppBar.setOnMenuItemClickListener { menuItem ->
-            when(menuItem.itemId){
-                R.id.download -> {
-                    setData(dao)
-                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDownloadProgressFragment())
-                    true
-                }
-                R.id.upload -> {
-                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToUploadDocumentFragment())
-                    true
-                }
-                R.id.search -> {
-                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
-                    true
-                }
-
-                else -> false
-            }
-        }
-        binding.hfAddHouseFloatButton.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAddHouseFragment())
-        }
-
-        /*binding.downloadDataIcon.setOnClickListener {
-
-            lifecycleScope.launchWhenCreated {
-                viewModel.getHouses()
-                viewModel.getCompleteVillageList()
-                viewModel.getCompleteMohallaList()
-                viewModel.getCompleteHousesList()
-
-            }
-            getData(dao)
-        }*/
-
-
-        return binding.root
-    }
 
     private fun setData(dao: PropDao) {
-        viewModel._villagesComplete.observe(viewLifecycleOwner, Observer { list ->
+        viewModelOverView._villagesComplete.observe(viewLifecycleOwner, Observer { list ->
             Log.i("villagesMain", list.toString())
             val villList = mutableListOf<VILLAGE>()
             list.forEach {
@@ -114,7 +57,7 @@ class HomeFragment : Fragment() {
             }
         })
 
-        viewModel._housesComplete.observe(viewLifecycleOwner, Observer { list ->
+        viewModelOverView._housesComplete.observe(viewLifecycleOwner, Observer { list ->
             Log.i("housesMain", list.toString())
             list.forEach {
                 val house = HOUSES(
@@ -148,7 +91,7 @@ class HomeFragment : Fragment() {
             }
         })
 
-        viewModel._mohallasComplete.observe(viewLifecycleOwner, Observer { list ->
+        viewModelOverView._mohallasComplete.observe(viewLifecycleOwner, Observer { list ->
             Log.i("mohallasMain", list.toString())
             list.forEach {
                 val mohalla = MOHALLA(it._id, it.houseCount, it.houseCount, it.village)
@@ -158,7 +101,7 @@ class HomeFragment : Fragment() {
             }
         })
 
-        viewModel._coys.observe(viewLifecycleOwner, Observer { list ->
+        viewModelOverView._coys.observe(viewLifecycleOwner, Observer { list ->
             Log.i("coysMain", list.toString())
             list.forEach {
                 val coy = COY(it._id, it.villagesCount, it.mohallasCount, it.housesCount)
@@ -169,9 +112,82 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun getData(){
+
+    override fun getViewModel() = HomeViewModel::class.java
+
+    override fun getFragmentBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentHomeBinding.inflate(inflater, container, false)
+
+    override fun getFragmentRepository(): UserRepository {
+        val token = runBlocking { userPreferences.authToken.first() }
+        val api = remoteDataSource.buildApi(UserApi::class.java, token)
+
+        return UserRepository(api)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.homeFragmentProgressBar.visible(false)
+
+        val dao = database.getInstance(requireContext()).dao
+
+
+
+        binding.coy.setOnClickListener {view: View ->
+            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_coyFragment)
+        }
+
+        binding.village.setOnClickListener {view: View ->
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToVillageFragment("home"))
+        }
+
+        binding.mohalla.setOnClickListener {view: View ->
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMohallaFragment("home"))
+        }
+
+        binding.bottomAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.download -> {
+                    setData(dao)
+                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDownloadProgressFragment())
+                    true
+                }
+                R.id.upload -> {
+                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToUploadDocumentFragment())
+                    true
+                }
+                R.id.search -> {
+                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
+                    true
+                }
+
+                else -> false
+            }
+        }
+        binding.hfAddHouseFloatButton.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAddHouseFragment())
+        }
+
+        viewModel.getUsers()
+
+        viewModel.user.observe(viewLifecycleOwner, Observer {
+            when(it){
+                is Resource.success -> {
+                    binding.homeFragmentProgressBar.visible(false)
+                    updateUI(it.value.user)
+                }
+                is Resource.loading -> {
+                    binding.homeFragmentProgressBar.visible(true)
+                }
+            }
+        })
 
     }
 
+    private fun updateUI(user: User){
 
+    }
 }
