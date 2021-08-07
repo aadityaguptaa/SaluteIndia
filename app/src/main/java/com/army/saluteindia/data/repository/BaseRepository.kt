@@ -1,6 +1,7 @@
 package com.army.saluteindia.data.repository
 
 import com.army.saluteindia.data.networklogin.Resource
+import com.army.saluteindia.data.networklogin.UserApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
@@ -25,5 +26,9 @@ open class BaseRepository {
                 }
             }
         }
+    }
+
+    suspend fun logout(api: UserApi) = safeApiCall {
+        api.logout()
     }
 }

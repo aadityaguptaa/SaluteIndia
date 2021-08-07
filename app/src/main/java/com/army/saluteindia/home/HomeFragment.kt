@@ -163,7 +163,10 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserReposi
                     findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
                     true
                 }
-
+                R.id.logout -> {
+                    logout()
+                    true
+                }
                 else -> false
             }
         }
@@ -184,6 +187,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserReposi
                 }
             }
         })
+
 
     }
 

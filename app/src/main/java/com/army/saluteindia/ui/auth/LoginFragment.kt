@@ -14,6 +14,7 @@ import com.army.saluteindia.data.repository.AuthRepository
 import com.army.saluteindia.home.HomeActivity
 import com.army.saluteindia.ui.base.BaseFragment
 import com.army.saluteindia.utils.enable
+import com.army.saluteindia.utils.handleApiError
 import com.army.saluteindia.utils.startNewActivity
 import com.army.saluteindia.utils.visible
 import kotlinx.coroutines.launch
@@ -28,15 +29,15 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         binding.login.enable(false)
 
         viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
-            binding.loading.visible(false)
+            binding.loading.visible(it is Resource.loading)
             when(it){
                 is Resource.success -> {
-                    viewModel.saveAuthToken(it.value.user.access_token!!)
-                    requireActivity().startNewActivity(HomeActivity::class.java)
+                    lifecycleScope.launch {
+                        viewModel.saveAuthToken(it.value.user.access_token!!)
+                        requireActivity().startNewActivity(HomeActivity::class.java)
+                    }
                 }
-                is Resource.failure -> {
-                    Toast.makeText(requireContext(), "Login Failure", Toast.LENGTH_SHORT).show()
-                }
+                is Resource.failure -> handleApiError(it){ login() }
             }
         })
 
@@ -46,14 +47,18 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         }
 
         binding.login.setOnClickListener {
-            val email = binding.username.text.toString().trim()
-            val password = binding.password.text.toString().trim()
-
-            binding.loading.visible(true)
-            viewModel.login(email, password)
+            login()
         }
 
     }
+
+    private fun login(){
+        val email = binding.username.text.toString().trim()
+        val password = binding.password.text.toString().trim()
+
+        viewModel.login(email, password)
+    }
+
     override fun getViewModel() = AuthViewModel::class.java
 
     override fun getFragmentBinding(

@@ -7,9 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.army.saluteindia.data.networklogin.Resource
 import com.army.saluteindia.data.networklogin.responses.LoginResponse
 import com.army.saluteindia.data.repository.UserRepository
+import com.army.saluteindia.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
-class HomeViewModel (private val repository: UserRepository): ViewModel(){
+class HomeViewModel (private val repository: UserRepository): BaseViewModel(repository){
 
     private val _user: MutableLiveData<Resource<LoginResponse>> = MutableLiveData()
     val user: LiveData<Resource<LoginResponse>>
