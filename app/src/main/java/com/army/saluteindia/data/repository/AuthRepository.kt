@@ -2,6 +2,7 @@ package com.army.saluteindia.data.repository
 
 import com.army.saluteindia.data.UserPreferences
 import com.army.saluteindia.data.networklogin.AuthApi
+import com.army.saluteindia.data.networklogin.responses.authInfo
 
 class AuthRepository(
     private val api: AuthApi,
@@ -12,7 +13,7 @@ class AuthRepository(
         username: String,
         password: String
     ) = safeApiCall {
-        api.login(username, password)
+        api.login(authInfo(username, password))
     }
 
     suspend fun saveAuthToken(token: String){

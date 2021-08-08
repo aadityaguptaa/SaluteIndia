@@ -57,7 +57,7 @@ class VillageFragment : Fragment() {
         binding.villageFragmentRecyclerView.adapter = villageAdapter
         binding.villageFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel2.getVillages(args.coyName)
+        /*viewModel2.getVillages(args.coyName)
 
         viewModel2._villages.observe(viewLifecycleOwner, Observer { list ->
             Log.i("asdfg", list.toString())
@@ -71,7 +71,7 @@ class VillageFragment : Fragment() {
             }
             villageAdapter.villages = villList
         })
-
+*/
         Thread.sleep(100)
         viewModel.villages.observe(viewLifecycleOwner, Observer {
             villageAdapter.villages = it

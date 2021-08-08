@@ -48,7 +48,7 @@ class HousesFragment : Fragment() {
         binding.housesFragmentRecyclerView.adapter = houseAdapter
         binding.housesFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel2.getHouses2(args.mohallaId)
+        /*viewModel2.getHouses2(args.mohallaId)
 
         viewModel2._houses2.observe(viewLifecycleOwner, Observer { list ->
             Log.i("asdfg", list.toString())
@@ -65,9 +65,9 @@ class HousesFragment : Fragment() {
                         dao.insertHouse(house)
                     }
                 }
-            }
-            houseAdapter.houses = houseList
-        })
+            }*/
+           /* houseAdapter.houses = houseList
+        })*/
 
 
         lifecycleScope.launch {

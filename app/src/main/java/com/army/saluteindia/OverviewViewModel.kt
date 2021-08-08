@@ -7,13 +7,12 @@ import androidx.lifecycle.ViewModel
 import com.army.saluteindia.data2.entities.COY
 import com.army.saluteindia.data2.entities.HOUSES
 import com.army.saluteindia.network.NewHouse
-import com.army.saluteindia.network.RestApi
 import com.army.saluteindia.network.villages.Data
 import kotlinx.coroutines.*
 
 class OverviewViewModel: ViewModel() {
 
-    private val _response = MutableLiveData<String>()
+    /*private val _response = MutableLiveData<String>()
 
     val response: LiveData<String>
         get() = _response
@@ -195,7 +194,7 @@ class OverviewViewModel: ViewModel() {
         }
     }
 
-    /*suspend fun createHouse(newHouse: NewHouse){
+    *//*suspend fun createHouse(newHouse: NewHouse){
         coroutineScope.launch {
             val getHouseDeferred = RestApi.RETROFIT_SERVICE.createHouse(newHouse)
             try{
@@ -210,10 +209,10 @@ class OverviewViewModel: ViewModel() {
                 Log.i("asdf", t.message.toString())
             }
         }
-    }*/
+    }*//*
 
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
-    }
+    }*/
 }

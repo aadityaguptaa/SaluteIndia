@@ -27,13 +27,13 @@ class DownloadProgressFragment : Fragment() {
 
         val dao = database.getInstance(requireContext()).dao
 
-        lifecycleScope.launch {
+        /*lifecycleScope.launch {
             viewModel.getHouses()
             viewModel.getCompleteVillageList()
             viewModel.getCompleteMohallaList()
             viewModel.getCompleteHousesList()
             findNavController().navigate(DownloadProgressFragmentDirections.actionDownloadProgressFragmentToHomeFragment())
-        }
+        }*/
         return inflater.inflate(R.layout.fragment_download_progress, container, false)
     }
 

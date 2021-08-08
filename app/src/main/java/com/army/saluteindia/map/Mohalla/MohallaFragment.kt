@@ -59,7 +59,7 @@ class MohallaFragment : Fragment() {
         binding.mohallaFragmentRecyclerView.adapter = mohallaAdapter
         binding.mohallaFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel2.getMohallas(village)
+        /*viewModel2.getMohallas(village)
 
         viewModel2._mohallas.observe(viewLifecycleOwner, Observer { list ->
             Log.i("asdfg", list.toString())
@@ -72,7 +72,7 @@ class MohallaFragment : Fragment() {
                 }
             }
             mohallaAdapter.mohallas = mohallaList
-        })
+        })*/
 
         //REPAIR THIS THREAD !!!!!!!!!!!!!!!!!!!!!!!!!!
         Thread.sleep(100)

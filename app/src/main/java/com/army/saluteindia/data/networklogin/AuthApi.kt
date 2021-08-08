@@ -1,17 +1,14 @@
 package com.army.saluteindia.data.networklogin
 
 import com.army.saluteindia.data.networklogin.responses.LoginResponse
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import com.army.saluteindia.data.networklogin.responses.authInfo
+import retrofit2.http.*
 
 interface AuthApi {
 
-    @FormUrlEncoded
-    @POST("auth/login")
+    @POST("/token")
     suspend fun login(
-        @Field("email") email: String,
-        @Field( "password") password: String
+        @Body authInfo: authInfo
     ): LoginResponse
 
 }

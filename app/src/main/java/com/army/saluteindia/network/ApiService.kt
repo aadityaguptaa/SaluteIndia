@@ -1,5 +1,11 @@
 package com.army.saluteindia.network
 
+import android.app.PendingIntent.getActivity
+import android.content.Context
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.datastore.preferences.preferencesKey
+import com.army.saluteindia.BuildConfig
+import com.army.saluteindia.data.UserPreferences
 import com.army.saluteindia.network.coys.CoyData
 import com.army.saluteindia.network.houses.HouseData
 import com.army.saluteindia.network.mohallas.MohallaData
@@ -15,33 +21,45 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
+import java.util.concurrent.TimeUnit
+import android.content.SharedPreferences
+import com.army.saluteindia.ui.auth.LoginFragment
+
 
 private const val BASE_URL = "https://armyproj.herokuapp.com/"
 
 
-private val moshi = Moshi.Builder()
+/*private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
-
-var httpInterceptor = HttpLoggingInterceptor()
-var okHttpClient = OkHttpClient.Builder()
-    .addInterceptor(httpInterceptor)
-    .build()
-
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(BASE_URL)
-    .client(okHttpClient)
-    .build()
+    .client(
+        OkHttpClient.Builder()
+            .addInterceptor { chain ->
+                chain.proceed(chain.request().newBuilder().also {
+                    it.addHeader("Authorization", "Bearer $authToken" )
+                }.build())
+            }.also { client ->
+                if(BuildConfig.DEBUG) {
+                    val logging = HttpLoggingInterceptor()
+                    logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+                    client.addInterceptor(logging)
+                }
+            }.connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .build()
+    )
+    .build()*/
 
 public interface ApiService{
 
-    @Headers(value=["Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
     @GET("/coy")
-    fun getCoysFromAPI():
-            Deferred<CoyData>
+    suspend fun getCoysFromAPI(): CoyData
+
 
     @Headers(value=["Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
     @GET("/village")
@@ -58,20 +76,14 @@ public interface ApiService{
     fun getHousesFromAPIWithMohallaFilter(@Query("mohallaName") mohallaname: String):
             Deferred<HouseData>
 
-    @Headers(value=["Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
     @GET("/village")
-    fun getVillagesList():
-            Deferred<VillageData>
+    suspend fun getVillagesList(): VillageData
 
-    @Headers(value=["Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
     @GET("/mohalla")
-    fun getMohallasList():
-            Deferred<MohallaData>
+    suspend fun getMohallasList(): MohallaData
 
-    @Headers(value=["Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
     @GET("/house")
-    fun getHousesList():
-            Deferred<HouseData>
+    suspend fun getHousesList(): HouseData
 
     /*@Headers(value=["Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
     @GET("/coy?coyName={coy}&type=villages")
@@ -97,8 +109,8 @@ public interface ApiService{
     ) : Any
 }
 
-object RestApi{
+/*object RestApi{
     val RETROFIT_SERVICE: ApiService by lazy {
         retrofit.create(ApiService::class.java)
     }
-}
+}*/

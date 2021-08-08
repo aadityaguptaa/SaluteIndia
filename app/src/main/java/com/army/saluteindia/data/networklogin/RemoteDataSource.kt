@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 class RemoteDataSource {
 
     companion object {
-        private const val BASE_URL = "http://simplifiedcoding.tech/mywebapp/public/api/"
+        private const val BASE_URL = "http://armyproj.herokuapp.com"
     }
 
     fun<Api> buildApi(
@@ -24,6 +24,7 @@ class RemoteDataSource {
                     .addInterceptor { chain ->
                         chain.proceed(chain.request().newBuilder().also {
                             it.addHeader("Authorization", "Bearer $authToken" )
+                            it.addHeader("Content-Type", "application/json")
                         }.build())
                     }.also { client ->
                         if(BuildConfig.DEBUG) {
