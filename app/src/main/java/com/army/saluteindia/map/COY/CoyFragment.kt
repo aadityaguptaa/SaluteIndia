@@ -36,29 +36,6 @@ import kotlinx.coroutines.runBlocking
 
 class CoyFragment : BaseFragment<CoyViewModel, FragmentCoyBinding, CoyRepository>() {
 
-   /* override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-
-
-        *//*lifecycleScope.launch {
-            viewModel2.getHouses()
-        }
-        viewModel2._coys.observe(viewLifecycleOwner, Observer {
-            Log.i("asdfg", it.toString())
-            it.forEach {
-                lifecycleScope.launch {
-                    dao.insertCoy(it)
-                }
-            }
-            coyAdapter.setData(it)
-        })*//*
-
-
-        *//**//*
-    }*/
     lateinit var coyAdapter: CoyAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
