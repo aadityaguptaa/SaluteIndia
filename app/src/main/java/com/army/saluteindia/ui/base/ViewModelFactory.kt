@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.army.saluteindia.data.repository.*
 import com.army.saluteindia.home.HomeViewModel
 import com.army.saluteindia.map.COY.CoyViewModel
+import com.army.saluteindia.map.Mohalla.MohallaViewModel
 import com.army.saluteindia.map.Village.VillageViewModel
 import com.army.saluteindia.ui.auth.AuthViewModel
 import java.lang.IllegalArgumentException
@@ -19,6 +20,8 @@ class ViewModelFactory (
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(repository as HomeRepository) as T
             modelClass.isAssignableFrom(CoyViewModel::class.java) -> CoyViewModel(repository as CoyRepository) as T
             modelClass.isAssignableFrom(VillageViewModel::class.java) -> VillageViewModel(repository as VillageRepository) as T
+            modelClass.isAssignableFrom(MohallaViewModel::class.java) -> MohallaViewModel(repository as MohallaRepository) as T
+
 
 
             else -> throw IllegalArgumentException("ViewModelClass not found")

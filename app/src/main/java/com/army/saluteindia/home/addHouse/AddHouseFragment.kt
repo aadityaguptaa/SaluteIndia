@@ -1,4 +1,4 @@
-package com.army.saluteindia.home
+package com.army.saluteindia.home.addHouse
 
 import android.os.Bundle
 import android.util.Log
@@ -8,14 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.army.saluteindia.OverviewViewModel
 import com.army.saluteindia.R
 import com.army.saluteindia.databinding.FragmentAddHouseBinding
-import com.army.saluteindia.databinding.FragmentHomeBinding
 import com.army.saluteindia.network.NewHouse
 import com.google.gson.Gson
-import kotlinx.coroutines.launch
 
 
 class AddHouseFragment : Fragment() {
@@ -75,12 +72,12 @@ class AddHouseFragment : Fragment() {
         village = binding.ahfVillage.editText?.text.toString()
         mohalla = binding.ahfMohalla.editText?.text.toString()
         houseNo = binding.ahfHouseNo.editText?.text.toString()
-        name = binding.ahfName.editText?.text.toString()
+        /*name = binding.ahfName.editText?.text.toString()
         relation = binding.ahfRelation.editText?.text.toString()
         sex = binding.ahfSex.editText?.text.toString()
         age = binding.ahfAge.editText?.text.toString()
         occupation = binding.ahfOccupation.editText?.text.toString()
-        mobileNo = binding.ahfMobileNo.editText?.text.toString()
+        mobileNo = binding.ahfMobileNo.editText?.text.toString()*/
         property = binding.ahfProperty.editText?.text.toString()
         floor = binding.ahfFloor.editText?.text.toString()
         colour = binding.ahfColour.editText?.text.toString()

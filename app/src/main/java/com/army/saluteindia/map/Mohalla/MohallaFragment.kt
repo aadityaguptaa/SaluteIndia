@@ -14,74 +14,98 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.army.saluteindia.OverviewViewModel
 import com.army.saluteindia.R
+import com.army.saluteindia.data.networklogin.Resource
+import com.army.saluteindia.data.repository.CoyRepository
+import com.army.saluteindia.data.repository.MohallaRepository
+import com.army.saluteindia.data.repository.VillageRepository
 import com.army.saluteindia.data2.database
+import com.army.saluteindia.data2.entities.COY
 import com.army.saluteindia.data2.entities.MOHALLA
 import com.army.saluteindia.data2.entities.VILLAGE
 import com.army.saluteindia.data2.viewModel
+import com.army.saluteindia.databinding.FragmentCoyBinding
 import com.army.saluteindia.databinding.FragmentMohallaBinding
 import com.army.saluteindia.databinding.FragmentVillageBinding
-import com.army.saluteindia.map.Village.VillageAdapter
-import com.army.saluteindia.map.Village.VillageFragmentArgs
+import com.army.saluteindia.map.COY.CoyAdapter
+import com.army.saluteindia.map.COY.CoyViewModel
+import com.army.saluteindia.map.Mohalla.MohallaAdapter
+import com.army.saluteindia.map.Mohalla.MohallaFragmentArgs
+import com.army.saluteindia.map.Mohalla.MohallaViewModel
+import com.army.saluteindia.network.ApiService
+import com.army.saluteindia.ui.base.BaseFragment
+import com.army.saluteindia.utils.handleApiError
+import com.army.saluteindia.utils.visible
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 
-class MohallaFragment : Fragment() {
-
+class MohallaFragment : BaseFragment<MohallaViewModel, FragmentMohallaBinding, MohallaRepository>() {
 
     private val args: MohallaFragmentArgs by navArgs()
+    lateinit var mohallaAdapter: MohallaAdapter
 
-    lateinit var binding : FragmentMohallaBinding
-    lateinit var viewModel: viewModel
-    private val viewModel2: OverviewViewModel by lazy {
-        ViewModelProvider(this).get(OverviewViewModel::class.java)
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        binding.mfProgressbar.visible(false)
+        var village = args.villageId
+        var viewModel3 = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_mohalla, container, false
-        )
+        /*viewModel3.getMohallas(args.villageId)
+        viewModel3.mohallas.observe(viewLifecycleOwner, Observer { list ->
+            mohallaAdapter.mohallas = list
+        })*/
 
-        val village = args.villageId
+        //@TODO make it work offline
 
-        val dao = database.getInstance(requireContext()).dao
+        viewModel.getMohallas(village)
+        addObserver()
+        mohallaAdapter = MohallaAdapter()
 
-
-        viewModel = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
-        if(village != "home") {
-            viewModel.getMohallas(village)
-        }
-
-        val mohallaAdapter = MohallaAdapter()
         binding.mohallaFragmentRecyclerView.adapter = mohallaAdapter
         binding.mohallaFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        /*viewModel2.getMohallas(village)
+    }
 
-        viewModel2._mohallas.observe(viewLifecycleOwner, Observer { list ->
-            Log.i("asdfg", list.toString())
-            val mohallaList= mutableListOf<MOHALLA>()
-            list.forEach {
-                val mohalla = MOHALLA(it._id, it.houseCount, it.houseCount, village)
-                mohallaList.add(mohalla)
-                lifecycleScope.launch {
-                    dao.insertMohalla(mohalla)
+    override fun getViewModel() =MohallaViewModel::class.java
+
+    override fun getFragmentBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentMohallaBinding.inflate(inflater, container, false)
+
+    override fun getFragmentRepository(): MohallaRepository {
+        val token = runBlocking { userPreferences.authToken.first() }
+        val api = remoteDataSource.buildApi(ApiService::class.java, token)
+        return MohallaRepository(api, userPreferences)
+    }
+
+    fun addObserver(){
+        val dao = database.getInstance(requireContext()).dao
+
+        viewModel._mohallasComplete.observe(viewLifecycleOwner, Observer {
+            binding.mfProgressbar.visible(it is Resource.loading)
+            when(it){
+                is Resource.success -> {
+                    val mohallaList= mutableListOf<MOHALLA>()
+                    it.value.data.forEach {
+                        val mohalla = MOHALLA(it._id, it.houseCount, it.houseCount, args.villageId)
+                        mohallaList.add(mohalla)
+                        lifecycleScope.launch {
+                            dao.insertMohalla(mohalla)
+                        }
+                    }
+                    mohallaAdapter.mohallas = mohallaList
+                }
+                is Resource.failure -> handleApiError(it){
+
                 }
             }
-            mohallaAdapter.mohallas = mohallaList
-        })*/
-
-        //REPAIR THIS THREAD !!!!!!!!!!!!!!!!!!!!!!!!!!
-        Thread.sleep(100)
-
-        viewModel.mohallas.observe(viewLifecycleOwner, Observer { t ->
-            mohallaAdapter.mohallas = t
         })
 
-        return binding.root
+
     }
+
 
 }

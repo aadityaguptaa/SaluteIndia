@@ -39,11 +39,6 @@ class VillageFragment : BaseFragment<VillageViewModel, FragmentVillageBinding, V
     private val args: VillageFragmentArgs by navArgs()
     lateinit var villageAdapter: VillageAdapter
 
-
-    private val viewModel2: OverviewViewModel by lazy {
-        ViewModelProvider(this).get(OverviewViewModel::class.java)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,10 +46,10 @@ class VillageFragment : BaseFragment<VillageViewModel, FragmentVillageBinding, V
         var coy = args.coyName
         var viewModel3 = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
 
-        viewModel3.getVillages(args.coyName)
+        /*viewModel3.getVillages(args.coyName)
         viewModel3.villages.observe(viewLifecycleOwner, Observer { list ->
             villageAdapter.villages = list
-        })
+        })*/
 
         viewModel.getVillages(coy)
         addObserver()
@@ -62,7 +57,6 @@ class VillageFragment : BaseFragment<VillageViewModel, FragmentVillageBinding, V
 
         binding.villageFragmentRecyclerView.adapter = villageAdapter
         binding.villageFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
 
     }
 

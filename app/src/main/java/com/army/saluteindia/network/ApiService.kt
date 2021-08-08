@@ -64,10 +64,9 @@ public interface ApiService{
     @GET("/village")
     suspend fun getVillagesFromAPIWithCompanyFilter(@Query("coyName") coyname: String): VillageData
 
-    @Headers(value=["Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
     @GET("/mohalla")
-    fun getMohallasFromAPIWithVillageFilter(@Query("villageName") villagename: String):
-            Deferred<MohallaData>
+    suspend fun getMohallasFromAPIWithVillageFilter(@Query("villageName") villagename: String): MohallaData
+
 
     @Headers(value=["Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
     @GET("/house")

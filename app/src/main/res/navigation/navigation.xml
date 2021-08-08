@@ -125,7 +125,7 @@
         android:label="SearchFragment" />
     <fragment
         android:id="@+id/addHouseFragment"
-        android:name="com.army.saluteindia.home.AddHouseFragment"
+        android:name="com.army.saluteindia.home.addHouse.AddHouseFragment"
         android:label="AddHouseFragment" >
         <action
             android:id="@+id/action_addHouseFragment_to_homeFragment"
