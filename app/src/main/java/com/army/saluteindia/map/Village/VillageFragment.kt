@@ -29,9 +29,11 @@ import com.army.saluteindia.network.ApiService
 import com.army.saluteindia.ui.base.BaseFragment
 import com.army.saluteindia.utils.handleApiError
 import com.army.saluteindia.utils.visible
+import khttp.get
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlin.concurrent.thread
 
 
 class VillageFragment : BaseFragment<VillageViewModel, FragmentVillageBinding, VillageRepository>() {
@@ -46,18 +48,33 @@ class VillageFragment : BaseFragment<VillageViewModel, FragmentVillageBinding, V
         var coy = args.coyName
         var viewModel3 = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
 
-        /*viewModel3.getVillages(args.coyName)
-        viewModel3.villages.observe(viewLifecycleOwner, Observer { list ->
-            villageAdapter.villages = list
-        })*/
 
-        viewModel.getVillages(coy)
-        addObserver()
+
         villageAdapter = VillageAdapter()
+
+        if(isInternetConnection()){
+            if(coy == "home"){
+                viewModel.getVillages()
+
+            }else{
+                viewModel.getVillages(coy)
+            }
+        }else{
+            viewModel3.getVillages(coy)
+        }
+
+
+
+
+        addObserver()
 
         binding.villageFragmentRecyclerView.adapter = villageAdapter
         binding.villageFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        Thread.sleep(100)
+        viewModel3.villages.observe(viewLifecycleOwner, Observer { list ->
+            villageAdapter.villages = list
+        })
     }
 
     override fun getViewModel() = VillageViewModel::class.java
@@ -97,6 +114,19 @@ class VillageFragment : BaseFragment<VillageViewModel, FragmentVillageBinding, V
         })
 
 
+    }
+
+    fun isInternetConnection(): Boolean {
+        var returnVal = false
+        thread {
+            returnVal = try {
+                get("https://www.google.com/")
+                true
+            }catch (e:Exception){
+                false
+            }
+        }.join()
+        return returnVal
     }
 
 

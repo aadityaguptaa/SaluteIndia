@@ -6,20 +6,34 @@ import androidx.lifecycle.viewModelScope
 import com.army.saluteindia.data.networklogin.Resource
 import com.army.saluteindia.data.repository.CoyRepository
 import com.army.saluteindia.data.repository.VillageRepository
+import com.army.saluteindia.data2.PropDao
+import com.army.saluteindia.data2.entities.VILLAGE
 import com.army.saluteindia.network.coys.CoyData
 import com.army.saluteindia.network.villages.VillageData
 import com.army.saluteindia.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
-class VillageViewModel (private val repository: VillageRepository): BaseViewModel(repository){
+class VillageViewModel (private val repository: VillageRepository): BaseViewModel(repository) {
 
     val _villagesComplete = MutableLiveData<Resource<VillageData>>()
     val villagesComplete: LiveData<Resource<VillageData>>
         get() = _villagesComplete
 
-    fun getVillages(coyName: String
+
+
+    fun getVillages(
+        coyName: String
     ) = viewModelScope.launch {
         _villagesComplete.value = Resource.loading
         _villagesComplete.value = repository.getVillages(coyName)
     }
+
+    fun getVillages(
+    ) = viewModelScope.launch {
+        _villagesComplete.value = Resource.loading
+        _villagesComplete.value = repository.getVillages()
+    }
+
+
+
 }

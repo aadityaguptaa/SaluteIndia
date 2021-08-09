@@ -111,7 +111,7 @@ class MapsFragment : Fragment() {
 
 
         var ll = LatLng(latSum/(listsize+1), longsum/(listsize+1))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ll, 5F))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ll, 20F))
 
     }
 

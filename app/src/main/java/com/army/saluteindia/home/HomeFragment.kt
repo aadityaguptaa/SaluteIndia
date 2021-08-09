@@ -57,6 +57,11 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeReposi
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_coyFragment)
         }
 
+        binding.search.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
+        }
+
+
         binding.village.setOnClickListener {view: View ->
             Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToVillageFragment("home"))
         }
@@ -73,10 +78,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeReposi
                 }
                 R.id.upload -> {
                     findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToUploadDocumentFragment())
-                    true
-                }
-                R.id.search -> {
-                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
                     true
                 }
                 R.id.logout -> {

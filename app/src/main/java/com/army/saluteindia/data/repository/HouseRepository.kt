@@ -3,13 +3,11 @@ package com.army.saluteindia.data.repository
 import com.army.saluteindia.data.UserPreferences
 import com.army.saluteindia.network.ApiService
 
-class MohallaRepository(
+class HouseRepository(
     private val api: ApiService,
     private val preferences: UserPreferences
 ): BaseRepository() {
 
-    suspend fun getMohallas(villageName: String) = safeApiCall { api.getMohallasFromAPIWithVillageFilter(villageName) }
-
-    suspend fun getMohallas() = safeApiCall { api.getMohallasList() }
+    suspend fun getHouses(mohallaName: String) = safeApiCall { api.getHousesFromAPIWithMohallaFilter(mohallaName) }
 
 }

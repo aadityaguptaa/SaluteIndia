@@ -18,21 +18,20 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/searchFragmentBattalionMenu"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="Battalion"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/textView13">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="none" />
+                    android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,6 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="Village"
@@ -59,6 +60,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="Mohalla"
@@ -76,6 +79,8 @@
                 android:id="@+id/sfName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
@@ -94,6 +99,8 @@
                 android:id="@+id/sfFatherName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
@@ -111,6 +118,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/sfHouseNo"
                 android:layout_width="match_parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
@@ -130,6 +139,8 @@
                 android:id="@+id/sfMobileNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
@@ -149,6 +160,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="Occupation"
@@ -167,6 +180,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="Land Area"
@@ -186,6 +201,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_marginEnd="16dp"
                 android:hint="Floor"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -206,7 +223,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="32dp"
                 android:text="search"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/sfCancelButton"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -225,6 +244,17 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/sfSearchButton"
                 app:layout_constraintTop_toBottomOf="@+id/sfFloor" />
+
+            <TextView
+                android:id="@+id/textView13"
+                style="@style/TextAppearance.MdcTypographyStyles.Headline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Enter Details"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

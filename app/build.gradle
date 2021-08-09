@@ -111,6 +111,8 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:1.0.0-alpha01"
 
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02"
+    implementation 'io.karn:khttp-android:0.1.0'
+
 
 
 

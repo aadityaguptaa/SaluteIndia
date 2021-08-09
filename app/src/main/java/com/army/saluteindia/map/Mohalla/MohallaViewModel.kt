@@ -22,4 +22,10 @@ class MohallaViewModel(private val repository: MohallaRepository): BaseViewModel
         _mohallasComplete.value = Resource.loading
         _mohallasComplete.value = repository.getMohallas(villageName)
     }
+
+    fun getMohallas(
+    ) = viewModelScope.launch {
+        _mohallasComplete.value = Resource.loading
+        _mohallasComplete.value = repository.getMohallas()
+    }
 }

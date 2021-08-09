@@ -1,5 +1,6 @@
 package com.army.saluteindia.map.Mohalla
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -38,12 +39,20 @@ import com.army.saluteindia.utils.visible
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import android.net.NetworkInfo
+
+import android.net.ConnectivityManager
+import androidx.core.content.ContextCompat
+
+import androidx.core.content.ContextCompat.getSystemService
+import kotlin.concurrent.thread
 
 
 class MohallaFragment : BaseFragment<MohallaViewModel, FragmentMohallaBinding, MohallaRepository>() {
 
     private val args: MohallaFragmentArgs by navArgs()
     lateinit var mohallaAdapter: MohallaAdapter
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,14 +61,24 @@ class MohallaFragment : BaseFragment<MohallaViewModel, FragmentMohallaBinding, M
         var village = args.villageId
         var viewModel3 = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
 
-        /*viewModel3.getMohallas(args.villageId)
-        viewModel3.mohallas.observe(viewLifecycleOwner, Observer { list ->
-            mohallaAdapter.mohallas = list
-        })*/
+        if(isInternetConnection()){
+            if(village == "home"){
+                viewModel.getMohallas()
+
+            }else{
+
+                viewModel.getMohallas(village)
+            }
+        }else{
+            viewModel3.getMohallas(village)
+            Thread.sleep(100)
+            Log.i("asdf", "no connection")
+            viewModel3.mohallas.observe(viewLifecycleOwner, Observer { list ->
+                mohallaAdapter.mohallas = list
+            })
+        }
 
         //@TODO make it work offline
-
-        viewModel.getMohallas(village)
         addObserver()
         mohallaAdapter = MohallaAdapter()
 
@@ -105,6 +124,19 @@ class MohallaFragment : BaseFragment<MohallaViewModel, FragmentMohallaBinding, M
         })
 
 
+    }
+
+    fun isInternetConnection(): Boolean {
+        var returnVal = false
+        thread {
+            returnVal = try {
+                khttp.get("https://www.google.com/")
+                true
+            }catch (e:Exception){
+                false
+            }
+        }.join()
+        return returnVal
     }
 
 

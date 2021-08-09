@@ -328,13 +328,16 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginBottom="48dp"
                     android:clickable="true"
                     android:foreground="?attr/selectableItemBackground"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="20dp"
                     app:cardUseCompatPadding="false"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/cardView4"
+                    app:layout_constraintEnd_toStartOf="@+id/search"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cardView3">
 
                     <LinearLayout
@@ -354,6 +357,45 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="TRT MV"
+                            android:textAlignment="center"
+                            android:textColor="#FF3C3636"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/search"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginBottom="48dp"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="20dp"
+                    app:cardUseCompatPadding="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/backtrack"
+                    app:layout_constraintTop_toTopOf="@+id/backtrack">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/custom_background"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/backtrack" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SEARCH"
                             android:textAlignment="center"
                             android:textColor="#FF3C3636"
                             android:textStyle="bold" />

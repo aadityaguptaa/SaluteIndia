@@ -1,4 +1,4 @@
-package com.army.saluteindia.home
+package com.army.saluteindia.home.search
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.army.saluteindia.R
+import com.army.saluteindia.data.networklogin.responses.searchInfo
 import com.army.saluteindia.databinding.FragmentSearchBinding
 
 
@@ -39,6 +41,8 @@ class SearchFragment : Fragment() {
 
         binding.sfSearchButton.setOnClickListener{
             getTextFields()
+            val searchInfo = searchInfo("BTN A", village, mohalla, name, fatherName, houseNo, mobileNumber, occupation, landArea, floor)
+            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSearchDetailsFragment(searchInfo))
         }
 
         return binding.root

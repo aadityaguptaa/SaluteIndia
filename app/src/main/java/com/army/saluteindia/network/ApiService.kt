@@ -23,6 +23,11 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 import java.util.concurrent.TimeUnit
 import android.content.SharedPreferences
+import com.army.saluteindia.data.networklogin.responses.LoginResponse
+import com.army.saluteindia.data.networklogin.responses.authInfo
+import com.army.saluteindia.data.networklogin.responses.searchInfo
+import com.army.saluteindia.data.networklogin.responses.searchInfo2
+import com.army.saluteindia.data.networklogin.searchResponses.searchResponse
 import com.army.saluteindia.ui.auth.LoginFragment
 
 
@@ -68,10 +73,8 @@ public interface ApiService{
     suspend fun getMohallasFromAPIWithVillageFilter(@Query("villageName") villagename: String): MohallaData
 
 
-    @Headers(value=["Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
     @GET("/house")
-    fun getHousesFromAPIWithMohallaFilter(@Query("mohallaName") mohallaname: String):
-            Deferred<HouseData>
+    suspend fun getHousesFromAPIWithMohallaFilter(@Query("mohallaName") mohallaname: String): HouseData
 
     @GET("/village")
     suspend fun getVillagesList(): VillageData
@@ -104,6 +107,11 @@ public interface ApiService{
         @Field("username") email: String,
         @Field("password") password: String,
     ) : Any
+
+    @POST("/person")
+    suspend fun getPersons(
+        @Body searchInfo: searchInfo
+    ): searchResponse
 }
 
 /*object RestApi{
