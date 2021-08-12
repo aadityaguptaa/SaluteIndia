@@ -7,10 +7,9 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.army.saluteindia.data.networklogin.searchResponses.Data
-import com.army.saluteindia.data2.entities.MOHALLA
-import com.army.saluteindia.databinding.MohallaFragmentItemBinding
+import com.army.saluteindia.data.networklogin.searchResponses.House
+import com.army.saluteindia.data.networklogin.searchResponses.parcelData
 import com.army.saluteindia.databinding.SearchDetailsFragmentItemBinding
-import com.army.saluteindia.map.Mohalla.MohallaFragmentDirections
 
 class SearchAdapter: RecyclerView.Adapter<SearchAdapter.MyViewHolder>() {
 
@@ -54,7 +53,7 @@ class SearchAdapter: RecyclerView.Adapter<SearchAdapter.MyViewHolder>() {
             occupation.text = person.occupation.toString()
 
             searchConstraintLayout.setOnClickListener{
-
+                Navigation.findNavController(holder.itemView ).navigate(SearchDetailsFragmentDirections.actionSearchDetailsFragmentToSearchPersonDetailsFragment(person))
             }
 
         }

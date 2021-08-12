@@ -6,9 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.army.saluteindia.data.networklogin.Resource
 import com.army.saluteindia.data.networklogin.responses.searchInfo
 import com.army.saluteindia.data.networklogin.searchResponses.searchResponse
-import com.army.saluteindia.data.repository.HouseRepository
 import com.army.saluteindia.data.repository.SearchRepository
-import com.army.saluteindia.network.houses.HouseData
 import com.army.saluteindia.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 

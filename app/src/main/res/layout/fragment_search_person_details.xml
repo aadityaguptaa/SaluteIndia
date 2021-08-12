@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+
+    <ScrollView
+        android:id="@+id/personDetailsFragmentConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:liftOnScroll="true">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/topAppBar"
+                    style="@style/Widget.MaterialComponents.Toolbar.Surface"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:menu="@menu/top_app_bar"
+                    app:navigationIcon="@drawable/ic_baseline_menu_24"
+                    app:title="Person Details" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="44dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_baseline_location_city_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Village: "
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                    app:layout_constraintStart_toEndOf="@+id/imageView4"
+                    app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/villageNamePersonDetailsFragment"
+                    style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ahemedabad"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                    app:layout_constraintStart_toEndOf="@+id/textView8"
+                    app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="44dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_baseline_location_on_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Mohalla: "
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                    app:layout_constraintStart_toEndOf="@+id/imageView5"
+                    app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mohallaNamePersonDetailsFragment"
+                    style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sanat"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView11"
+                    app:layout_constraintStart_toEndOf="@+id/textView11"
+                    app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="44dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_baseline_house_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="House No: "
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                    app:layout_constraintStart_toEndOf="@+id/imageView6"
+                    app:layout_constraintTop_toTopOf="@+id/imageView6" />
+
+                <TextView
+                    android:id="@+id/houseNumberPersonDetailsFragment"
+                    style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HS-8"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView14"
+                    app:layout_constraintStart_toEndOf="@+id/textView14"
+                    app:layout_constraintTop_toTopOf="@+id/textView14" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:paddingBottom="8dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView6"
+                    app:strokeColor="#3F51B5"
+                    app:strokeWidth="2dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        style="@style/Widget.MaterialComponents.CardView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:outlineProvider="none"
+                        android:paddingBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/textView17"
+                            style="@style/TextAppearance.MdcTypographyStyles.Body1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/head_info"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView18"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="32dp"
+                            android:text="Name: "
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+                        <EditText
+                            android:id="@+id/headNamePersonDetailsFragment"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Aditya Gupta"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                            app:layout_constraintStart_toEndOf="@+id/textView18"
+                            app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="Father Name:"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+                        <EditText
+                            android:id="@+id/fatherNamePersonDetailsFragment"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Pramod Gupta"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView20"
+                            app:layout_constraintStart_toEndOf="@+id/textView20"
+                            app:layout_constraintTop_toTopOf="@+id/textView20" />
+
+                        <TextView
+                            android:id="@+id/textView10"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="Surname: "
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+                        <TextView
+                            android:id="@+id/surnamePersonDetailsFragment"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Something"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView10"
+                            app:layout_constraintStart_toEndOf="@+id/textView10"
+                            app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:paddingBottom="8dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+                    app:strokeColor="#3F51B5"
+                    app:strokeWidth="2dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/textView15"
+                            style="@style/TextAppearance.MdcTypographyStyles.Body1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/personal_info"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView16"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:text="Age: "
+                            app:layout_constraintStart_toStartOf="@+id/textView15"
+                            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+                        <TextView
+                            android:id="@+id/agePersonDetailsFragment"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="21"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView16"
+                            app:layout_constraintStart_toEndOf="@+id/textView16"
+                            app:layout_constraintTop_toTopOf="@+id/textView16" />
+
+                        <TextView
+                            android:id="@+id/textView21"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Mobile No: "
+                            app:layout_constraintStart_toStartOf="@+id/textView16"
+                            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+                        <TextView
+                            android:id="@+id/mobilePersonDetailsFragment"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="9887554978"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView21"
+                            app:layout_constraintStart_toEndOf="@+id/textView21"
+                            app:layout_constraintTop_toTopOf="@+id/textView21" />
+
+                        <TextView
+                            android:id="@+id/textView23"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Occupation: "
+                            app:layout_constraintStart_toStartOf="@+id/textView21"
+                            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+                        <TextView
+                            android:id="@+id/occupationPersonDetailsFragment"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Student"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView23"
+                            app:layout_constraintStart_toEndOf="@+id/textView23"
+                            app:layout_constraintTop_toTopOf="@+id/textView23" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:padding="8dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
+                    app:strokeColor="#3F51B5"
+                    app:strokeWidth="2dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/textView27"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="something"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView26"
+                            app:layout_constraintStart_toEndOf="@+id/textView26"
+                            app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+                        <TextView
+                            android:id="@+id/textView25"
+                            style="@style/TextAppearance.MdcTypographyStyles.Body1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/land_info"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView26"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="House Type: "
+
+                            app:layout_constraintStart_toStartOf="@+id/textView31"
+                            app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+                        <TextView
+                            android:id="@+id/textView28"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Colour: "
+
+                            app:layout_constraintStart_toStartOf="@+id/textView26"
+                            app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+                        <TextView
+                            android:id="@+id/colourPersonDetailsFragment"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Black"
+
+                            app:layout_constraintBottom_toBottomOf="@+id/textView28"
+                            app:layout_constraintStart_toEndOf="@+id/textView28"
+                            app:layout_constraintTop_toTopOf="@+id/textView28" />
+
+                        <TextView
+                            android:id="@+id/landAreaPersonDetailsFragment"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+
+                            android:text="1 Kunal"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView31"
+                            app:layout_constraintStart_toEndOf="@+id/textView31"
+                            app:layout_constraintTop_toTopOf="@+id/textView31" />
+
+                        <TextView
+                            android:id="@+id/textView31"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:text="Land Area: "
+                            app:layout_constraintStart_toStartOf="@+id/textView25"
+                            app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+                        <TextView
+                            android:id="@+id/textView32"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="8dp"
+                            android:text="Shed: "
+                            app:layout_constraintStart_toStartOf="@+id/textView28"
+                            app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+                        <TextView
+                            android:id="@+id/shedPersonDetailsFragment"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginStart="8dp"
+                            android:text="Yes"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView32"
+                            app:layout_constraintStart_toEndOf="@+id/textView32"
+                            app:layout_constraintTop_toTopOf="@+id/textView32" />
+
+                        <TextView
+                            android:id="@+id/textView34"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="Floor: "
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/textView32"
+                            app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+                        <TextView
+                            android:id="@+id/floorPersonDetailsFragment"
+                            style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+
+                            android:text="4"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView34"
+                            app:layout_constraintStart_toEndOf="@+id/textView34"
+                            app:layout_constraintTop_toTopOf="@+id/textView34" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/applyChangesButtonDetailsFragment"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="Apply Changes"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView3" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

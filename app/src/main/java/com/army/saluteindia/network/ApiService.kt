@@ -1,34 +1,17 @@
 package com.army.saluteindia.network
 
-import android.app.PendingIntent.getActivity
-import android.content.Context
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.datastore.preferences.preferencesKey
-import com.army.saluteindia.BuildConfig
-import com.army.saluteindia.data.UserPreferences
 import com.army.saluteindia.network.coys.CoyData
 import com.army.saluteindia.network.houses.HouseData
 import com.army.saluteindia.network.mohallas.MohallaData
 import com.army.saluteindia.network.villages.VillageData
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.MultipartBody
-import okhttp3.OkHttpClient
 import okhttp3.RequestBody
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
-import java.util.concurrent.TimeUnit
-import android.content.SharedPreferences
 import com.army.saluteindia.data.networklogin.responses.LoginResponse
 import com.army.saluteindia.data.networklogin.responses.authInfo
 import com.army.saluteindia.data.networklogin.responses.searchInfo
-import com.army.saluteindia.data.networklogin.responses.searchInfo2
 import com.army.saluteindia.data.networklogin.searchResponses.searchResponse
-import com.army.saluteindia.ui.auth.LoginFragment
 
 
 private const val BASE_URL = "https://armyproj.herokuapp.com/"
@@ -112,6 +95,13 @@ public interface ApiService{
     suspend fun getPersons(
         @Body searchInfo: searchInfo
     ): searchResponse
+
+    @POST("/addHouse")
+    suspend fun addHouse(
+        @Body authInfo: authInfo
+    ): LoginResponse
+
+
 }
 
 /*object RestApi{

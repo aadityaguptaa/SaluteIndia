@@ -143,5 +143,19 @@
         <argument
             android:name="searchInfo"
             app:argType="com.army.saluteindia.data.networklogin.responses.searchInfo" />
+        <action
+            android:id="@+id/action_searchDetailsFragment_to_searchPersonDetailsFragment"
+            app:destination="@id/searchPersonDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchPersonDetailsFragment"
+        android:name="com.army.saluteindia.home.search.personDetails.SearchPersonDetailsFragment"
+        android:label="SearchPersonDetailsFragment" >
+        <argument
+            android:name="personDetails"
+            app:argType="com.army.saluteindia.data.networklogin.searchResponses.Data" />
+        <action
+            android:id="@+id/action_searchPersonDetailsFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
 </navigation>
