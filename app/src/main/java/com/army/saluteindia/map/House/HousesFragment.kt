@@ -50,6 +50,9 @@ class HousesFragment : BaseFragment<HouseViewModel, FragmentHousesBinding, House
         var mohalla = args.mohallaId
         var viewModel3 = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
 
+        binding.hfVillageName.text = args.villageId
+        binding.hfMohallaName.text = args.mohallaId
+
         viewModel3.getVillages(args.mohallaId)
         Thread.sleep(100)
         viewModel3.houses.observe(viewLifecycleOwner, Observer { list ->
@@ -63,6 +66,7 @@ class HousesFragment : BaseFragment<HouseViewModel, FragmentHousesBinding, House
 
         binding.housesFragmentRecyclerView.adapter = houseAdapter
         binding.housesFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.hfCompanyName.text = args.companyName
 
     }
 
@@ -94,6 +98,7 @@ class HousesFragment : BaseFragment<HouseViewModel, FragmentHousesBinding, House
                             dao.insertHouse(house)
                         }
                     }
+                    binding.noOfHousesHouseMainFragment.text = houseList.size.toString()
                     houseAdapter.houses =houseList
                 }
                 is Resource.failure -> handleApiError(it){

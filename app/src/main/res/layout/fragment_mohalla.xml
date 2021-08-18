@@ -82,6 +82,7 @@
                         android:src="@drawable/ic_baseline_location_city_24" />
 
                     <TextView
+                        android:id="@+id/mfCompanyName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -114,6 +115,7 @@
                         android:src="@drawable/ic_baseline_location_on_24" />
 
                     <TextView
+                        android:id="@+id/mfVillafgeName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -145,6 +147,7 @@
                         android:src="@drawable/ic_baseline_home_work_24" />
 
                     <TextView
+                        android:id="@+id/mfNoOfHouses"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -177,6 +180,7 @@
                         android:src="@drawable/ic_baseline_house_24" />
 
                     <TextView
+                        android:id="@+id/mfBattalionNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

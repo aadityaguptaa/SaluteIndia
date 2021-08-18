@@ -1,5 +1,6 @@
 package com.army.saluteindia.map.Village
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,7 +64,7 @@ class VillageAdapter: RecyclerView.Adapter<VillageAdapter.MyViewHolder>() {
             noOfHousesVillage.text = village.family_count.toString()
 
             villageConstraintLayout.setOnClickListener{
-                Navigation.findNavController(it).navigate(VillageFragmentDirections.actionVillageFragmentToMohallaFragment(village.id))
+                Navigation.findNavController(it).navigate(VillageFragmentDirections.actionVillageFragmentToMohallaFragment(village.id, village.coy_id))
 
             }
 

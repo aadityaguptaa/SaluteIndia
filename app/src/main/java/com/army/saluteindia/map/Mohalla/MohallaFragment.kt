@@ -61,8 +61,12 @@ class MohallaFragment : BaseFragment<MohallaViewModel, FragmentMohallaBinding, M
         var village = args.villageId
         var viewModel3 = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
 
+        binding.mfVillafgeName.text = village
+        binding.mfCompanyName.text = args.companyName
+        Log.i("home", args.companyName)
+
         if(isInternetConnection()){
-            if(village == "home"){
+            if(village == "None"){
                 viewModel.getMohallas()
 
             }else{
@@ -84,6 +88,7 @@ class MohallaFragment : BaseFragment<MohallaViewModel, FragmentMohallaBinding, M
 
         binding.mohallaFragmentRecyclerView.adapter = mohallaAdapter
         binding.mohallaFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        mohallaAdapter.setCompany(args.companyName)
 
     }
 
@@ -115,6 +120,7 @@ class MohallaFragment : BaseFragment<MohallaViewModel, FragmentMohallaBinding, M
                             dao.insertMohalla(mohalla)
                         }
                     }
+                    binding.mfNoOfHouses.text = mohallaList.size.toString()
                     mohallaAdapter.mohallas = mohallaList
                 }
                 is Resource.failure -> handleApiError(it){

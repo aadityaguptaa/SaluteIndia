@@ -67,7 +67,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeReposi
         }
 
         binding.mohalla.setOnClickListener {view: View ->
-            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMohallaFragment("home"))
+            Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToMohallaFragment("None", "None"))
         }
 
         binding.bottomAppBar.setOnMenuItemClickListener { menuItem ->

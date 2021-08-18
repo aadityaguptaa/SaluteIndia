@@ -65,6 +65,9 @@
         <action
             android:id="@+id/action_mohallaFragment_to_housesFragment"
             app:destination="@id/housesFragment" />
+        <argument
+            android:name="companyName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -102,6 +105,12 @@
         <action
             android:id="@+id/action_housesFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <argument
+            android:name="villageId"
+            app:argType="string" />
+        <argument
+            android:name="companyName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/downloadProgressFragment"

@@ -20,6 +20,7 @@ import com.army.saluteindia.map.House.HousesFragmentDirections
 class MohallaAdapter: RecyclerView.Adapter<MohallaAdapter.MyViewHolder>() {
 
     var mohallaList = emptyList<MOHALLA>()
+    var companyName = "None"
 
     inner class MyViewHolder(val binding: MohallaFragmentItemBinding): RecyclerView.ViewHolder(binding.root){
 
@@ -59,7 +60,7 @@ class MohallaAdapter: RecyclerView.Adapter<MohallaAdapter.MyViewHolder>() {
             noOfHouseMohalla.text = mohalla.family_count.toString()
 
             mohallaConstraintLayout.setOnClickListener{
-                Navigation.findNavController(it).navigate(MohallaFragmentDirections.actionMohallaFragmentToHousesFragment(mohalla.id))
+                Navigation.findNavController(it).navigate(MohallaFragmentDirections.actionMohallaFragmentToHousesFragment(mohalla.id, mohalla.village_id, companyName))
 
             }
 
@@ -76,6 +77,10 @@ class MohallaAdapter: RecyclerView.Adapter<MohallaAdapter.MyViewHolder>() {
     fun setData(mohalla: List<MOHALLA>){
         this.mohallaList = mohalla
         notifyDataSetChanged()
+    }
+
+    fun setCompany(companyName:String){
+        this.companyName = companyName
     }
 
     /*fun setVillageCount(count: List<Int>){
