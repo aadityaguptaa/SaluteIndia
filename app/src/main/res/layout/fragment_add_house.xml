@@ -366,6 +366,7 @@
                         android:layout_marginEnd="8dp"
                         android:hint="Name"
                         app:boxStrokeWidth="0dp"
+                        app:layout_constraintBottom_toTopOf="@+id/husbandNumber"
                         app:layout_constraintEnd_toStartOf="@+id/husbandOccupation"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
@@ -409,7 +410,7 @@
                         android:layout_marginBottom="8dp"
                         android:hint="Mobile No"
                         app:boxStrokeWidth="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/husbandSex"
                         app:layout_constraintEnd_toStartOf="@+id/husbandAge"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
@@ -435,6 +436,26 @@
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/husbandNumber"
                         app:layout_constraintTop_toTopOf="@+id/husbandNumber">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/husbandSex"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:hint="SEX"
+                        app:boxStrokeWidth="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/husbandNumber"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="@+id/husbandNumber"
+                        app:layout_constraintTop_toBottomOf="@+id/husbandNumber">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"

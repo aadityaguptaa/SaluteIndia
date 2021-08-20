@@ -33,9 +33,11 @@ import com.army.saluteindia.network.ApiService
 import com.army.saluteindia.ui.base.BaseFragment
 import com.army.saluteindia.utils.handleApiError
 import com.army.saluteindia.utils.visible
+import khttp.get
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlin.concurrent.thread
 
 
 class HousesFragment : BaseFragment<HouseViewModel, FragmentHousesBinding, HouseRepository>() {
@@ -53,11 +55,28 @@ class HousesFragment : BaseFragment<HouseViewModel, FragmentHousesBinding, House
         binding.hfVillageName.text = args.villageId
         binding.hfMohallaName.text = args.mohallaId
 
-        viewModel3.getVillages(args.mohallaId)
+        /*viewModel3.getVillages(args.mohallaId)
         Thread.sleep(100)
         viewModel3.houses.observe(viewLifecycleOwner, Observer { list ->
             houseAdapter.houses = list
-        })
+        })*/
+
+        if(isInternetConnection()){
+            if(mohalla == "None"){
+                viewModel.getHouses(mohalla)
+
+            }else{
+
+                viewModel.getHouses(mohalla)
+            }
+        }else{
+            viewModel3.getHouses(mohalla)
+            Thread.sleep(100)
+            Log.i("asdf", "no connection")
+            viewModel3.houses.observe(viewLifecycleOwner, Observer { list ->
+                houseAdapter.houses = list
+            })
+        }
 
 
         viewModel.getHouses(mohalla)
@@ -108,6 +127,19 @@ class HousesFragment : BaseFragment<HouseViewModel, FragmentHousesBinding, House
         })
 
 
+    }
+
+    fun isInternetConnection(): Boolean {
+        var returnVal = false
+        thread {
+            returnVal = try {
+                get("https://www.google.com/")
+                true
+            }catch (e:Exception){
+                false
+            }
+        }.join()
+        return returnVal
     }
 
 

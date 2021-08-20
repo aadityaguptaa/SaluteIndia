@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.army.saluteindia.data.repository.*
 import com.army.saluteindia.home.HomeViewModel
+import com.army.saluteindia.home.addHouse.AddHouseViewModel
 import com.army.saluteindia.home.search.SearchViewModel
 import com.army.saluteindia.map.COY.CoyViewModel
 import com.army.saluteindia.map.House.HouseViewModel
@@ -25,6 +26,8 @@ class ViewModelFactory (
             modelClass.isAssignableFrom(MohallaViewModel::class.java) -> MohallaViewModel(repository as MohallaRepository) as T
             modelClass.isAssignableFrom(HouseViewModel::class.java) -> HouseViewModel(repository as HouseRepository) as T
             modelClass.isAssignableFrom(SearchViewModel::class.java) -> SearchViewModel(repository as SearchRepository) as T
+            modelClass.isAssignableFrom(AddHouseViewModel::class.java) -> AddHouseViewModel(repository as AddHouseRepository) as T
+
 
             else -> throw IllegalArgumentException("ViewModelClass not found")
         }

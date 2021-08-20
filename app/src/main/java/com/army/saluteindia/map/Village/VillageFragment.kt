@@ -48,8 +48,6 @@ class VillageFragment : BaseFragment<VillageViewModel, FragmentVillageBinding, V
         var coy = args.coyName
         var viewModel3 = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
 
-
-
         villageAdapter = VillageAdapter()
 
         if(isInternetConnection()){
@@ -62,8 +60,6 @@ class VillageFragment : BaseFragment<VillageViewModel, FragmentVillageBinding, V
         }else{
             viewModel3.getVillages(coy)
         }
-
-
 
 
         addObserver()

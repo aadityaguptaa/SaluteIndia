@@ -12,6 +12,7 @@ import com.army.saluteindia.data.networklogin.responses.LoginResponse
 import com.army.saluteindia.data.networklogin.responses.authInfo
 import com.army.saluteindia.data.networklogin.responses.searchInfo
 import com.army.saluteindia.data.networklogin.searchResponses.searchResponse
+import com.army.saluteindia.home.addHouse.jsonformat.newhousejson
 
 
 private const val BASE_URL = "https://armyproj.herokuapp.com/"
@@ -100,6 +101,11 @@ public interface ApiService{
     suspend fun addHouse(
         @Body authInfo: authInfo
     ): LoginResponse
+
+    @POST("/house")
+    suspend fun newHouse(
+        @Body newHouse: newhousejson
+    )
 
 
 }
