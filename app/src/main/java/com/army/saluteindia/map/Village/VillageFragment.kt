@@ -39,26 +39,40 @@ import kotlin.concurrent.thread
 class VillageFragment : BaseFragment<VillageViewModel, FragmentVillageBinding, VillageRepository>() {
 
     private val args: VillageFragmentArgs by navArgs()
-    lateinit var villageAdapter: VillageAdapter
+    private lateinit var villageAdapter: VillageAdapter
+    private lateinit var mainViewModel: viewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.vfProgressbar.visible(false)
-        var coy = args.coyName
-        var viewModel3 = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
+        val coy = args.coyName
+
+        Log.d("village", coy)
+
+        mainViewModel = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
 
         villageAdapter = VillageAdapter()
 
+        Log.d("village", isInternetConnection().toString())
         if(isInternetConnection()){
             if(coy == "home"){
                 viewModel.getVillages()
+                Log.d("village", "coy == home executed")
+
 
             }else{
                 viewModel.getVillages(coy)
+                Log.d("village", "coy == coy executed")
+
             }
         }else{
-            viewModel3.getVillages(coy)
+            mainViewModel.getVillages(coy)
+            Thread.sleep(100)
+            mainViewModel.villages.observe(viewLifecycleOwner, Observer { list ->
+                //Log.d("village", list.toString())
+                villageAdapter.villages = list
+            })
         }
 
 
@@ -67,10 +81,7 @@ class VillageFragment : BaseFragment<VillageViewModel, FragmentVillageBinding, V
         binding.villageFragmentRecyclerView.adapter = villageAdapter
         binding.villageFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        Thread.sleep(100)
-        viewModel3.villages.observe(viewLifecycleOwner, Observer { list ->
-            villageAdapter.villages = list
-        })
+
     }
 
     override fun getViewModel() = VillageViewModel::class.java
@@ -86,19 +97,21 @@ class VillageFragment : BaseFragment<VillageViewModel, FragmentVillageBinding, V
         return VillageRepository(api, userPreferences)
     }
 
-    fun addObserver(){
+    private fun addObserver(){
         val dao = database.getInstance(requireContext()).dao
 
         viewModel._villagesComplete.observe(viewLifecycleOwner, Observer {
             binding.vfProgressbar.visible(it is Resource.loading)
             when(it){
                 is Resource.success -> {
+
                     val villList= mutableListOf<VILLAGE>()
                     it.value.data.forEach {
                         val village = VILLAGE(it._id, it.mohallaCount, it.houseCount, it.mohallaCount, args.coyName)
                         villList.add(village)
                         lifecycleScope.launch {
                             dao.insertVillage(village)
+                            Log.d("village", mainViewModel.villages.value.toString())
                         }
                     }
                     villageAdapter.villages = villList
@@ -112,7 +125,7 @@ class VillageFragment : BaseFragment<VillageViewModel, FragmentVillageBinding, V
 
     }
 
-    fun isInternetConnection(): Boolean {
+    private fun isInternetConnection(): Boolean {
         var returnVal = false
         thread {
             returnVal = try {

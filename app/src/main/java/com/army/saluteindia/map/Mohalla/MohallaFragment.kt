@@ -51,18 +51,17 @@ import kotlin.concurrent.thread
 class MohallaFragment : BaseFragment<MohallaViewModel, FragmentMohallaBinding, MohallaRepository>() {
 
     private val args: MohallaFragmentArgs by navArgs()
-    lateinit var mohallaAdapter: MohallaAdapter
+    private lateinit var mohallaAdapter: MohallaAdapter
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.mfProgressbar.visible(false)
-        var village = args.villageId
-        var viewModel3 = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
+        val village = args.villageId
+        val viewModel3 = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
 
-        binding.mfVillafgeName.text = village
-        binding.mfCompanyName.text = args.companyName
+
         Log.i("home", args.companyName)
 
         if(isInternetConnection()){
@@ -105,34 +104,34 @@ class MohallaFragment : BaseFragment<MohallaViewModel, FragmentMohallaBinding, M
         return MohallaRepository(api, userPreferences)
     }
 
-    fun addObserver(){
+    private fun addObserver(){
         val dao = database.getInstance(requireContext()).dao
 
-        viewModel._mohallasComplete.observe(viewLifecycleOwner, Observer {
-            binding.mfProgressbar.visible(it is Resource.loading)
-            when(it){
+        viewModel._mohallasComplete.observe(viewLifecycleOwner, Observer { list ->
+            binding.mfProgressbar.visible(list is Resource.loading)
+            when(list){
                 is Resource.success -> {
                     val mohallaList= mutableListOf<MOHALLA>()
-                    it.value.data.forEach {
+                    list.value.data.forEach {
                         val mohalla = MOHALLA(it._id, it.houseCount, it.houseCount, args.villageId)
                         mohallaList.add(mohalla)
                         lifecycleScope.launch {
                             dao.insertMohalla(mohalla)
                         }
                     }
-                    binding.mfNoOfHouses.text = mohallaList.size.toString()
                     mohallaAdapter.mohallas = mohallaList
                 }
-                is Resource.failure -> handleApiError(it){
+                is Resource.failure -> handleApiError(list){
 
                 }
+                Resource.loading -> TODO()
             }
         })
 
 
     }
 
-    fun isInternetConnection(): Boolean {
+    private fun isInternetConnection(): Boolean {
         var returnVal = false
         thread {
             returnVal = try {

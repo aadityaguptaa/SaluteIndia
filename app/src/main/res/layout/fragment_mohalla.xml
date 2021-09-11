@@ -33,177 +33,18 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mohallaFragmentCardView"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:elevation="8dp"
-            android:padding="8dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            app:strokeColor="@color/material_on_surface_stroke"
-            app:strokeWidth="1dp">
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/houseFragmentInnerConstraintLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
-                <LinearLayout
-                    android:id="@+id/linearLayout9"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:gravity="left|center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout11"
-                    app:layout_constraintEnd_toStartOf="@+id/linearLayout10"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="left|center_vertical"
-                        android:src="@drawable/ic_baseline_location_city_24" />
-
-                    <TextView
-                        android:id="@+id/mfCompanyName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:layout_weight="2"
-                        android:text="A Coy" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout10"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:gravity="left|center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout12"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout9"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="left|center_vertical"
-                        android:src="@drawable/ic_baseline_location_on_24" />
-
-                    <TextView
-                        android:id="@+id/mfVillafgeName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:layout_weight="2"
-                        android:text="Sant" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout12"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:gravity="left|center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout11"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="left|center_vertical"
-                        android:src="@drawable/ic_baseline_home_work_24" />
-
-                    <TextView
-                        android:id="@+id/mfNoOfHouses"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:layout_weight="2"
-                        android:text="52" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout11"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:gravity="left|center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/linearLayout12"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="left|center_vertical"
-                        android:src="@drawable/ic_baseline_house_24" />
-
-                    <TextView
-                        android:id="@+id/mfBattalionNumber"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:layout_weight="2"
-                        android:text="BT 1" />
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mohallaFragmentRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mohallaFragmentCardView"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             tools:listitem="@layout/mohalla_fragment_item" />
 
         <ProgressBar

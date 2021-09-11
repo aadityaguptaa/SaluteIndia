@@ -1,6 +1,7 @@
 package com.army.saluteindia.data2
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -36,6 +37,7 @@ class viewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
             villages = repository.getVillages(coy)
         }
+        Log.d("villages", "getVillages() from viewModel called")
     }
 
     fun getMohallas(village: String){
