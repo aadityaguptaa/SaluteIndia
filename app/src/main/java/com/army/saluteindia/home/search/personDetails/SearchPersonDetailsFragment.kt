@@ -1,6 +1,7 @@
 package com.army.saluteindia.home.search.personDetails
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,11 +43,13 @@ class SearchPersonDetailsFragment : Fragment() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.favorite -> {
-                    findNavController().navigate(SearchPersonDetailsFragmentDirections.actionSearchPersonDetailsFragmentToMapsFragment(args.personDetails.house.mohalla!!))
+                    findNavController().navigate(SearchPersonDetailsFragmentDirections.actionSearchPersonDetailsFragmentToMapsFragment(args.personDetails.house.mohalla!!, null))
+                    Log.d("search", "map")
                     true
                 }
                 R.id.search -> {
                     // Handle search icon press
+                    Log.d("search", "search")
                     true
                 }
                 R.id.more -> {

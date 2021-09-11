@@ -58,7 +58,7 @@ class DetailsFragment : Fragment() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.favorite -> {
-                    findNavController().navigate(DetailsFragmentDirections.actionDetailsFragmentToMapsFragment(args.houseDetails.mohalla_id))
+                    findNavController().navigate(DetailsFragmentDirections.actionDetailsFragmentToMapsFragment(args.houseDetails.mohalla_id, args.houseDetails.id))
                     true
                 }
                 R.id.search -> {

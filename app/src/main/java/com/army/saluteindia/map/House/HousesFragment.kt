@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.army.saluteindia.OverviewViewModel
@@ -26,6 +27,7 @@ import com.army.saluteindia.data2.viewModel
 import com.army.saluteindia.databinding.FragmentCoyBinding
 import com.army.saluteindia.databinding.FragmentHousesBinding
 import com.army.saluteindia.databinding.FragmentVillageBinding
+import com.army.saluteindia.home.search.personDetails.SearchPersonDetailsFragmentDirections
 import com.army.saluteindia.map.COY.CoyAdapter
 import com.army.saluteindia.map.COY.CoyViewModel
 import com.army.saluteindia.map.Mohalla.MohallaAdapter
@@ -53,6 +55,25 @@ class HousesFragment : BaseFragment<HouseViewModel, FragmentHousesBinding, House
         var viewModel3 = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
 
 
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.favorite -> {
+                    findNavController().navigate(HousesFragmentDirections.actionHousesFragmentToMapsFragment(args.mohallaId, null))
+                    Log.d("search", "map")
+                    true
+                }
+                R.id.search -> {
+                    // Handle search icon press
+                    Log.d("search", "search")
+                    true
+                }
+                R.id.more -> {
+                    // Handle more item (inside overflow menu) press
+                    true
+                }
+                else -> false
+            }
+        }
 
         /*viewModel3.getVillages(args.mohallaId)
         Thread.sleep(100)
