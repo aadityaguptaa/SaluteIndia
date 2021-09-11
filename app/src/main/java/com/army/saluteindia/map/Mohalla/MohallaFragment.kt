@@ -51,8 +51,10 @@ class MohallaFragment : BaseFragment<MohallaViewModel, FragmentMohallaBinding, M
                 viewModel.getMohallas(village)
             }
         }else{
-            mainViewModel.getMohallas(village)
-            Thread.sleep(100)
+            if(village != "None"){
+                mainViewModel.getMohallas(village)
+                Thread.sleep(100)
+            }
             Log.i("asdf", "no connection")
 
             mainViewModel.mohallas.observe(viewLifecycleOwner, Observer { list ->

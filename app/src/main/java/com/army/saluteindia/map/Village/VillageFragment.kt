@@ -49,6 +49,7 @@ class VillageFragment : BaseFragment<VillageViewModel, FragmentVillageBinding, V
         val coy = args.coyName
 
         Log.d("village", coy)
+        val dao = database.getInstance(requireContext()).dao
 
         mainViewModel = ViewModelProvider(this).get(com.army.saluteindia.data2.viewModel::class.java)
 
@@ -67,10 +68,12 @@ class VillageFragment : BaseFragment<VillageViewModel, FragmentVillageBinding, V
 
             }
         }else{
-            mainViewModel.getVillages(coy)
-            Thread.sleep(100)
+            if(coy != "home"){
+                mainViewModel.getVillages(coy)
+                Thread.sleep(100)
+            }
             mainViewModel.villages.observe(viewLifecycleOwner, Observer { list ->
-                //Log.d("village", list.toString())
+                Log.d("village", list.toString())
                 villageAdapter.villages = list
             })
         }
