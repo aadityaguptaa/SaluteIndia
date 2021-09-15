@@ -13,6 +13,9 @@ import com.army.saluteindia.data.networklogin.responses.authInfo
 import com.army.saluteindia.data.networklogin.responses.searchInfo
 import com.army.saluteindia.data.networklogin.searchResponses.searchResponse
 import com.army.saluteindia.home.addHouse.jsonformat.newhousejson
+import com.army.saluteindia.home.network.response.UploadResponse
+import com.army.saluteindia.network.houseTemp.HouseDataTemp
+import retrofit2.Call
 
 
 private const val BASE_URL = "https://armyproj.herokuapp.com/"
@@ -58,7 +61,7 @@ public interface ApiService{
 
 
     @GET("/house")
-    suspend fun getHousesFromAPIWithMohallaFilter(@Query("mohallaName") mohallaname: String): HouseData
+    suspend fun getHousesFromAPIWithMohallaFilter(@Query("mohallaName") mohallaname: String): HouseDataTemp
 
     @GET("/village")
     suspend fun getVillagesList(): VillageData
@@ -67,7 +70,7 @@ public interface ApiService{
     suspend fun getMohallasList(): MohallaData
 
     @GET("/house")
-    suspend fun getHousesList(): HouseData
+    suspend fun getHousesList(): HouseDataTemp
 
     /*@Headers(value=["Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
     @GET("/coy?coyName={coy}&type=villages")
@@ -75,11 +78,11 @@ public interface ApiService{
             Deferred<data>*/
 
     @Multipart
-    @POST("")
+    @POST("/fill-db")
     fun uploadImage(
-        @Part document: MultipartBody.Part,
+        @Part doc: MultipartBody.Part,
         @Part("desc") desc: RequestBody
-    )
+    ): Call<UploadResponse>
 
     @Headers(value=["Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MGYxYjdkMTBhNjFlZWQzNDI5NjI5OWQiLCJ1c2VybmFtZSI6ImlyZXNoYXJtYSIsImJ0biI6Ijc4IEJOIiwiY3JlYXRlZEF0IjoxNjI2NDUzOTY5LjYyMDIyMiwiZXhwIjoxNjI3NjY1MjQ2fQ.Q4nA7hfMiP1Zm2aFQ6P_NTTESeVkP-YqyWk1OKtldLw"])
     @POST("/house")

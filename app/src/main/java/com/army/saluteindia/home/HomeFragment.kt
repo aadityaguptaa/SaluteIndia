@@ -146,7 +146,9 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, HomeReposi
                 is Resource.success -> {
                     it.value.data.forEach {
                         val house = HOUSES(it._id, it.house, it.floor, it.colour, it.perimeterfence.toString(), it.cowshed.toString(), it.entryPoints.toInt(), it.geo.lat, it.geo.long, it.property, 1, 2,
-                            3, 4, 5, 1, 1, it.coy, it.village, it.mohalla, it.husbandDocument.name, it.husbandDocument.tel, it.husbandDocument.age
+                            3, 4, 5, 1, 1, it.coy, it.village, it.mohalla, it.husbandDocument.name.toString(),
+                            it.husbandDocument.tel.toString(),
+                            it.husbandDocument.age.toString()
                         )
                         lifecycleScope.launch {
                             dao.insertHouse(house)

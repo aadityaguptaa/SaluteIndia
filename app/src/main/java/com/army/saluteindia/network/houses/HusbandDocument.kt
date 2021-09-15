@@ -6,5 +6,6 @@ data class HusbandDocument(
     val name: String,
     val occupation: String,
     val sex: String,
-    val tel: String
+    val tel: String,
+    val hid: String
 )

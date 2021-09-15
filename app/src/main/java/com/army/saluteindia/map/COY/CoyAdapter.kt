@@ -9,6 +9,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.army.saluteindia.R
 import com.army.saluteindia.data2.entities.COY
+import com.army.saluteindia.network.coys.CoyItem
 
 class CoyAdapter: RecyclerView.Adapter<CoyAdapter.MyViewHolder>() {
 

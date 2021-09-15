@@ -1,6 +1,7 @@
 package com.army.saluteindia.map.COY
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -70,6 +71,7 @@ class CoyFragment : BaseFragment<CoyViewModel, FragmentCoyBinding, CoyRepository
             when(it){
                 is Resource.success -> {
                     it.value.data.coy.forEach { companyItem ->
+                        Log.i("coy", companyItem.toString())
                         val coy = COY(companyItem._id, companyItem.villagesCount, companyItem.mohallasCount, companyItem.housesCount)
                         lifecycleScope.launch {
                             dao.insertCoy(coy)

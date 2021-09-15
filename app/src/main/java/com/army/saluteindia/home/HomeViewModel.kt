@@ -8,6 +8,7 @@ import com.army.saluteindia.data.networklogin.responses.LoginResponse
 import com.army.saluteindia.data.repository.HomeRepository
 import com.army.saluteindia.data.repository.UserRepository
 import com.army.saluteindia.network.coys.CoyData
+import com.army.saluteindia.network.houseTemp.HouseDataTemp
 import com.army.saluteindia.network.houses.HouseData
 import com.army.saluteindia.network.mohallas.MohallaData
 import com.army.saluteindia.network.villages.Data
@@ -25,8 +26,8 @@ class HomeViewModel (private val repository: HomeRepository): BaseViewModel(repo
     val mohallasComplete: LiveData<Resource<MohallaData>>
         get() = _mohallasComplete
 
-    val _housesComplete = MutableLiveData<Resource<HouseData>>()
-    val housesComplete: LiveData<Resource<HouseData>>
+    val _housesComplete = MutableLiveData<Resource<HouseDataTemp>>()
+    val housesComplete: LiveData<Resource<HouseDataTemp>>
         get() = _housesComplete
 
     val _coysComplete = MutableLiveData<Resource<CoyData>>()

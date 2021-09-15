@@ -8,6 +8,6 @@ class HouseRepository(
     private val preferences: UserPreferences
 ): BaseRepository() {
 
-    suspend fun getHouses(mohallaName: String) = safeApiCall { api.getHousesFromAPIWithMohallaFilter(mohallaName) }
+    suspend fun getHouses(mohallaName: String) =  safeApiCall { api.getHousesFromAPIWithMohallaFilter(mohallaName)}
 
 }

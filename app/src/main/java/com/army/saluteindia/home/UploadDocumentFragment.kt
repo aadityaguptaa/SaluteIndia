@@ -10,13 +10,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import com.army.saluteindia.R
+import com.army.saluteindia.data.UserPreferences
+import com.army.saluteindia.data.networklogin.RemoteDataSource
+import com.army.saluteindia.data.networklogin.UserApi
 import com.army.saluteindia.databinding.FragmentUploadDocumentBinding
 import com.army.saluteindia.home.network.UploadApi
 import com.army.saluteindia.home.network.UploadRequestBody
 import com.army.saluteindia.home.network.response.UploadResponse
+import com.army.saluteindia.network.ApiService
 import com.army.saluteindia.utils.getFileName
 import com.army.saluteindia.utils.snackbar
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -32,12 +39,23 @@ import java.io.FileOutputStream
 class UploadDocumentFragment : Fragment(), UploadRequestBody.UploadCallback {
 
     lateinit var binding : FragmentUploadDocumentBinding
+    protected val remoteDataSource = RemoteDataSource()
+    protected lateinit var userPreferences: UserPreferences
+    lateinit var api: ApiService
 
     private var selectedDucument: Uri? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        userPreferences = UserPreferences(requireContext())
+        lifecycleScope.launch { userPreferences.authToken.first() }
+        lifecycleScope.launch {
+            val authToken = userPreferences.authToken.first()
+            api = remoteDataSource.buildApi(ApiService::class.java, authToken)
+
+        }
 
         binding = DataBindingUtil.inflate(
             layoutInflater, R.layout.fragment_upload_document, container, false
@@ -70,9 +88,9 @@ class UploadDocumentFragment : Fragment(), UploadRequestBody.UploadCallback {
         binding.uploadFragmentProgressbar.progress = 0
         val body = UploadRequestBody(file, "document", this)
 
-        UploadApi().uploadImage(
-            MultipartBody.Part.createFormData("image", file.name, body),
-            RequestBody.create(MediaType.parse("multipart/form-data"), " Document")
+        api.uploadImage(
+            MultipartBody.Part.createFormData("xlsx", file.name, body),
+            RequestBody.create(MediaType.parse("*/*"), "Document")
         ).enqueue(object : Callback<UploadResponse>{
             override fun onResponse(
                 call: Call<UploadResponse>,
@@ -92,7 +110,7 @@ class UploadDocumentFragment : Fragment(), UploadRequestBody.UploadCallback {
     private fun openDocumentChooser() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
             addCategory(Intent.CATEGORY_OPENABLE)
-            type = "application/pdf"
+            type = "application/*"
         }
         startActivityForResult(intent, REQUEST_CODE_DOCUMENT_PICKER)
     }
@@ -108,7 +126,7 @@ class UploadDocumentFragment : Fragment(), UploadRequestBody.UploadCallback {
             when(requestCode){
                 REQUEST_CODE_DOCUMENT_PICKER -> {
                     selectedDucument = data?.data
-                    Log.i("asdfg", selectedDucument?.path.toString())
+                    Log.d("asdfg", selectedDucument?.path.toString())
                 }
             }
         }

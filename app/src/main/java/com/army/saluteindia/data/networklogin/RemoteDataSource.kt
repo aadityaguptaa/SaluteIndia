@@ -6,17 +6,28 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import com.google.gson.FieldNamingPolicy
+
+import com.google.gson.GsonBuilder
+
+
+
 
 class RemoteDataSource {
 
     companion object {
-        private const val BASE_URL = "http://armyproj.herokuapp.com"
+        const val BASE_URL = "https://armyproj.herokuapp.com/"
     }
 
     fun<Api> buildApi(
         api: Class<Api>,
         authToken: String? = null
     ): Api{
+
+        val gsonBuilder = GsonBuilder()
+        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+        gsonBuilder.setLenient()
+
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(
@@ -36,7 +47,7 @@ class RemoteDataSource {
                     .readTimeout(30, TimeUnit.SECONDS)
                     .build()
             )
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
             .build()
             .create(api)
     }
